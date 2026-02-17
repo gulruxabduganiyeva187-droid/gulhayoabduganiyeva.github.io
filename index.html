@@ -2,115 +2,200 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Abdug'aniyeva Gulhayo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulhayo | AI Kabutar Detektori</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+        }
+
+        /* Tepada chiroyli fon va rasm */
+        header {
+            background: linear-gradient(rgba(106, 90, 205, 0.8), rgba(106, 90, 205, 0.8)), 
+                        url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .ai-container {
+            max-width: 800px;
+            margin: -50px auto 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .ai-title {
+            color: #6a5acd;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Oppoq kabutar rasmlari uchun galereya */
+        .pigeon-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .pigeon-gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 2px solid #eee;
+        }
+
+        .pigeon-gallery img:hover {
+            transform: scale(1.05);
+            border-color: #6a5acd;
+        }
+
+        /* Kamera dizayni */
+        #webcam-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            border: 8px solid #f0f0f0;
+            border-radius: 50%; /* Dumaloq kamera */
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(106, 90, 205, 0.2);
+        }
+
+        #webcam-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .btn-main {
+            background: linear-gradient(45deg, #6a5acd, #836fff);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(106, 90, 205, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 90, 205, 0.6);
+        }
+
+        #label-container {
+            margin-top: 20px;
+        }
+
+        .result-tag {
+            display: inline-block;
+            background: #f0edff;
+            color: #6a5acd;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+            border: 1px solid #dcd6ff;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="overlay">
-        <h1>Abdug'aniyeva Gulhayo</h1>
-        <p>Axborot tizimlari va texnologiyalari yo‘nalishi talabasi</p>
-        <a href="#about" class="btn">Men haqimda</a>
+    <div>
+        <h1>Sun'iy Intellekt Portfoliosi</h1>
+        <p>Abdug'aniyeva Gulhayo tomonidan yaratilgan loyiha</p>
     </div>
 </header>
 
-<section id="about" class="card">
-    <h2>Men haqimda</h2>
-    <p>
-        Men Abdug'aniyeva Gulhayo. Axborot tizimlari va texnologiyalari
-        yo‘nalishida tahsil olaman. IT sohasida bilimlarimni
-        oshirish va zamonaviy texnologiyalarni o‘rganishga qiziqaman.
-    </p>
-</section>
-
-<section class="card">
-    <h2>Bilim va ko‘nikmalarim</h2>
-    <div class="skills">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>Kompyuter savodxonligi</span>
-        <span>Ma’lumotlar bazasi</span>
+<div class="ai-container">
+    <h2 class="ai-title">🕊️ Oppoq Kabutarlar Detektori</h2>
+    <p>Ushbu tizim Teachable Machine texnologiyasi asosida kabutarlarni taniy oladi.</p>
+    <div class="pigeon-gallery">
+        <img src="https://images.unsplash.com/photo-1549608276-5786d7ff1f1d?auto=format&fit=crop&w=300&q=80" alt="White Pigeon 1">
+        <img src="https://images.unsplash.com/photo-1601299443906-8809477e6417?auto=format&fit=crop&w=300&q=80" alt="White Pigeon 2">
+        <img src="https://images.unsplash.com/photo-1521652329035-2630ee1fc749?auto=format&fit=crop&w=300&q=80" alt="White Pigeon 3">
     </div>
-</section>
 
-<section class="card">
-    <h2>Maqsadim</h2>
-    <p>
-        Kelajakda malakali IT mutaxassisi bo‘lib,
-        zamonaviy web va axborot tizimlari yaratishda
-        faol ishtirok etishni maqsad qilganman.
-    </p>
-</section>
+    <button class="btn-main" onclick="init()">Kamerani ishga tushirish</button>
 
-<section class="card contact">
-    <h2>Aloqa</h2>
-    <p>📧 Email: gulhayo@gmail.com</p>
-    <p>📞 Telefon: +998 33 003 16 06</p>
+    <div id="webcam-wrapper">
+        <div id="webcam-container"></div>
+    </div>
+    
+    <div id="label-container"></div>
+</div>
+
+<section class="card contact" style="text-align: center; background: #fff; margin: 20px auto; max-width: 800px; padding: 30px; border-radius: 20px;">
+    <h2>Bog'lanish</h2>
+    <p>📧 Email: gulhayo@gmail.com | 📞 +998 33 003 16 06</p>
 </section>
 
 <footer>
-    <p>© 2026 Abdug'aniyeva Gulhayo | Shaxsiy web-sayt</p>
+    <p style="text-align: center; padding: 20px; color: #777;">© 2026 Gulhayo | AI & Web Development</p>
 </footer>
 
-</body>
-</html>
-<div>Teachable Machine Image Model</div>
-<button type="button" onclick="init()">Start</button>
-<div id="webcam-container"></div>
-<div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-<script type="text/javascript">
-    // More API functions here:
-    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-    // the link to your model provided by Teachable Machine export panel
+<script>
     const URL = "https://teachablemachine.withgoogle.com/models/aCwgeVOmQ/";
-
     let model, webcam, labelContainer, maxPredictions;
 
-    // Load the image model and setup the webcam
     async function init() {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
-
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
         model = await tmImage.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
 
-        // Convenience function to setup a webcam
-        const flip = true; // whether to flip the webcam
-        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
-        await webcam.setup(); // request access to the webcam
+        const flip = true;
+        webcam = new tmImage.Webcam(300, 300, flip);
+        await webcam.setup();
         await webcam.play();
         window.requestAnimationFrame(loop);
 
-        // append elements to the DOM
         document.getElementById("webcam-container").appendChild(webcam.canvas);
         labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
-            labelContainer.appendChild(document.createElement("div"));
+        for (let i = 0; i < maxPredictions; i++) {
+            let div = document.createElement("div");
+            div.className = "result-tag";
+            labelContainer.appendChild(div);
         }
     }
 
     async function loop() {
-        webcam.update(); // update the webcam frame
+        webcam.update();
         await predict();
         window.requestAnimationFrame(loop);
     }
 
-    // run the webcam image through the image model
     async function predict() {
-        // predict can take in an image, video or canvas html element
         const prediction = await model.predict(webcam.canvas);
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
     }
 </script>
+</body>
+</html>
