@@ -3,146 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdug'aniyeva Gulhayo | Portfolio</title>
+    <title>Abdug'aniyeva Gulhayo | QarSU</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     
     <style>
+        :root {
+            --soft-pink: #fce7f3;
+            --deep-pink: #db2777;
+            --accent-purple: #7c3aed;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+        }
+
         body {
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #e0e7ff 100%);
+            color: #334155;
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
-            padding: 50px 0;
+            padding: 40px 0;
         }
 
-        /* Profil bo'limi */
-        .header-info { text-align: center; margin-bottom: 40px; }
-        .header-info h1 { font-weight: 800; letter-spacing: 2px; margin-bottom: 5px; }
-        .header-info p { opacity: 0.8; font-size: 1.1rem; }
-
-        .profile-img-container {
-            width: 180px; height: 180px; margin: 0 auto 30px;
-            border-radius: 50%; padding: 5px;
-            background: linear-gradient(45deg, #f59e0b, #ef4444, #3b82f6);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
-        }
-        .profile-img-container img {
-            width: 100%; height: 100%; border-radius: 50%;
-            object-fit: cover; border: 4px solid #0f172a;
+        /* Profil Section */
+        .profile-card {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            max-width: 900px; margin: 0 auto;
-        }
-
-        /* AI Camera Styling */
-        #webcam-container canvas {
+        .rose-avatar {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
             border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            max-width: 200px;
+            padding: 8px;
+            background: linear-gradient(45deg, #db2777, #7c3aed);
+            box-shadow: 0 15px 35px rgba(219, 39, 119, 0.3);
+            position: relative;
         }
+
+        .rose-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+        }
+
+        /* Mukammal Shishasimon Card */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .university-badge {
+            display: inline-block;
+            background: #fdf2f8;
+            color: #db2777;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #fbcfe8;
+        }
+
+        /* AI Camera Section */
+        .ai-box {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9;
+        }
+
+        #webcam-container canvas {
+            border-radius: 20px;
+            width: 100% !important;
+            max-width: 280px;
+            border: 4px solid #fdf2f8;
+        }
+
         .res-tag {
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px; border-radius: 20px;
-            margin: 5px; display: inline-block; font-size: 14px;
+            background: linear-gradient(to right, #db2777, #7c3aed);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 12px;
+            margin: 5px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 0.85rem;
         }
 
-        /* Buttons & Links */
-        .btn-custom {
-            background: #2563eb; color: white; border-radius: 30px;
-            padding: 12px 30px; border: none; font-weight: 600;
-            transition: 0.3s;
+        /* Bog'lanish tugmalari */
+        .contact-btn {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #475569;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
         }
-        .btn-custom:hover { background: #1d4ed8; transform: scale(1.05); }
 
-        .contact-box {
-            background: rgba(255,255,255,0.08);
-            border-radius: 20px; padding: 15px; margin-bottom: 10px;
-            display: flex; align-items: center; text-decoration: none; color: white;
-            transition: 0.3s; border: 1px solid transparent;
+        .contact-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            color: var(--deep-pink);
+            border-color: #fbcfe8;
         }
-        .contact-box:hover { background: rgba(255,255,255,0.15); border-color: #3b82f6; }
-        .contact-box i { font-size: 24px; margin-right: 15px; width: 40px; text-align: center; }
+        .contact-btn i {
+            font-size: 24px;
+            margin-right: 20px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: white;
+        }
 
-        /* Grid.js Custom Style */
-        .gridjs-container { color: #333 !important; border-radius: 15px; overflow: hidden; }
+        /* Grid JS Custom */
+        .gridjs-td { font-size: 14px; }
+        .gridjs-th { background: #fdf2f8 !important; color: #db2777 !important; }
+
+        .btn-camera {
+            background: linear-gradient(to right, #db2777, #be185d);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.2);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="header-info">
-            <div class="profile-img-container">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop" alt="Atirgul">
+        <div class="profile-card">
+            <div class="rose-avatar">
+                <img src="https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rose">
             </div>
-            <h1>ABDUG'ANIYEVA GULHAYO</h1>
-            <p>Sun'iy intellekt va Ma'lumotlar muhandisi</p>
-            <p><i class="fas fa-university me-2"></i> Qarshi davlat universiteti talabasi</p>
+            <h1>Abdug'aniyeva Gulhayo</h1>
+            <div class="university-badge mb-3">
+                <i class="fas fa-graduation-cap me-2"></i> Qarshi davlat universiteti talabasi
+            </div>
+            <p class="text-muted">Sun'iy intellekt bo'yicha tadqiqotchi va Data-muhandis</p>
         </div>
 
-        <div class="glass-card">
-            <div class="row align-items: center;">
-                <div class="col-md-7">
-                    <h4 class="mb-4"><i class="fas fa-dove me-2"></i> AI Kabutar Tanuvchi</h4>
-                    <p class="small opacity-75">Tizim orqali kabutar turlarini aniqlashingiz mumkin.</p>
-                    <button class="btn btn-custom mb-3" onclick="init()">
-                        <i class="fas fa-camera me-2"></i> Kamerani ishga tushirish
-                    </button>
+        <div class="glass-panel">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="ai-box">
+                        <h4 class="fw-bold mb-4 text-pink"><i class="fas fa-microchip me-2"></i> AI Vision Tizimi</h4>
+                        <p class="small text-muted mb-4">Teachable Machine modeli yordamida kabutarlarni real vaqt rejimida aniqlash tizimi.</p>
+                        
+                        <div class="text-center">
+                            <div id="webcam-container" class="mb-3"></div>
+                            <div id="label-container" class="mb-4"></div>
+                            <button class="btn btn-primary btn-camera w-100" onclick="init()">
+                                <i class="fas fa-video me-2"></i> Kamerani yoqish
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5 text-center">
-                    <div id="webcam-container"></div>
-                    <div id="label-container" class="mt-3"></div>
+
+                <div class="col-lg-6">
+                    <h4 class="fw-bold mb-4"><i class="fas fa-address-book me-2"></i> Bog'lanish kanallari</h4>
+                    
+                    <a href="https://t.me/Ruzmatuvna_G" class="contact-btn">
+                        <i class="fab fa-telegram" style="background: #0088cc;"></i>
+                        <div>
+                            <span class="d-block small text-muted">Telegram</span>
+                            <span class="fw-bold">@Ruzmatuvna_G</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:gulhayoabduganiyeva36@gmail.com" class="contact-btn">
+                        <i class="fas fa-envelope" style="background: #ef4444;"></i>
+                        <div>
+                            <span class="d-block small text-muted">Elektron pochta</span>
+                            <span class="fw-bold">gulhayoabduganiyeva36@gmail.com</span>
+                        </div>
+                    </a>
+
+                    <a href="tel:+998330031606" class="contact-btn">
+                        <i class="fas fa-phone" style="background: #10b981;"></i>
+                        <div>
+                            <span class="d-block small text-muted">Telefon raqam</span>
+                            <span class="fw-bold">+998 33 003 16 06</span>
+                        </div>
+                    </a>
                 </div>
             </div>
 
-            <hr class="my-5 opacity-25">
+            <hr class="my-5 opacity-10">
 
-            <h4 class="mb-4"><i class="fas fa-database me-2"></i> Mening Yangi Data-setim</h4>
+            <h4 class="fw-bold mb-4"><i class="fas fa-database me-2"></i> Shaxsiy Data-sent ma'lumotlari</h4>
             <div id="data-wrapper"></div>
-
-            <hr class="my-5 opacity-25">
-
-            <h4 class="mb-4 text-center">Bog'lanish</h4>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <a href="https://t.me/Ruzmatuvna_G" class="contact-box">
-                        <i class="fab fa-telegram" style="color: #0088cc;"></i>
-                        <div>
-                            <div class="small opacity-50">Telegram</div>
-                            <div>@Ruzmatuvna_G</div>
-                        </div>
-                    </a>
-                    <a href="mailto:gulhayoabduganiyeva36@gmail.com" class="contact-box">
-                        <i class="fas fa-envelope" style="color: #ea4335;"></i>
-                        <div>
-                            <div class="small opacity-50">Email</div>
-                            <div>gulhayoabduganiyeva36@gmail.com</div>
-                        </div>
-                    </a>
-                    <a href="tel:+998901234567" class="contact-box">
-                        <i class="fas fa-phone-alt" style="color: #34a853;"></i>
-                        <div>
-                            <div class="small opacity-50">Telefon</div>
-                            <div>+998 90 XXX XX XX</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
-
-        <footer class="text-center mt-5 opacity-50 small">
-            © 2026 Gulhayo | QarSU | GitHub Pages orqali yaratildi
+        <footer class="text-center mt-5 text-muted small">
+            <p>© 2026 Abdug'aniyeva Gulhayo • Barcha huquqlar himoyalangan</p>
         </footer>
     </div>
 
@@ -151,7 +228,7 @@
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
 
     <script>
-        // --- AI MODEL QISMI ---
+        // AI Model Funksiyalari
         const URL = "https://teachablemachine.withgoogle.com/models/aCwgeVOmQ/";
         let model, webcam, labelContainer, maxPredictions;
 
@@ -161,13 +238,15 @@
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            webcam = new tmImage.Webcam(200, 200, true);
+            const flip = true; 
+            webcam = new tmImage.Webcam(280, 280, flip);
             await webcam.setup();
             await webcam.play();
             window.requestAnimationFrame(loop);
 
             document.getElementById("webcam-container").appendChild(webcam.canvas);
             labelContainer = document.getElementById("label-container");
+            labelContainer.innerHTML = "";
             for (let i = 0; i < maxPredictions; i++) {
                 labelContainer.appendChild(document.createElement("div")).className = "res-tag";
             }
@@ -186,20 +265,20 @@
                     prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
             }
         }
-        // --- DATA-SET QISMI ---
+
+        // Data-set Jadvali
         new gridjs.Grid({
-            columns: ["ID", "Ma'lumot turi", "Soni", "Holati"],
+            columns: ["№", "Ma'lumotlar to'plami", "Format", "Miqdor", "Sifat"],
             data: [
-                ["1", "Oq kabutar rasmlari", "500+", "O'rganilgan"],
-                ["2", "Atrof-muhit tasvirlari", "200+", "Tayyor"],
-                ["3", "Test natijalari", "150+", "A'lo"],
-                ["4", "QarSU Tadqiqotlari", "12+", "Jarayonda"]
+                ["1", "Oq kabutar (AI Dataset)", "JPG/PNG", "650 ta", "A'lo"],
+                ["2", "QarSU Statistikasi", "CSV/Excel", "1.2 MB", "Yuqori"],
+                ["3", "Tadqiqot natijalari", "JSON", "400 qator", "O'rtacha"],
+                ["4", "Tasviriy segmentatsiya", "Fayl", "85 ta", "Tayyor"]
             ],
             search: true,
             pagination: { limit: 5 },
-            style: { table: { border: 'none' }, th: { background: '#f8f9fa' } }
+            language: { 'search': { 'placeholder': 'Qidirish...' } }
         }).render(document.getElementById("data-wrapper"));
     </script>
 </body>
 </html>
-                    
