@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdug'aniyeva Gulhayo | AI & Ma'lumotlar Muhandisi</title>
+    <title>Abdug'aniyeva Gulhayo | Portfoli</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -13,185 +13,177 @@
     
     <style>
         :root {
-            --rose-gold: #fce7f3;
-            --deep-pink: #db2777;
-            --lavender: #7c3aed;
+            --rose: #db2777;
+            --violet: #7c3aed;
+            --bg-gradient: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%);
         }
 
         body {
-            background: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%);
-            color: #1e293b;
+            background: var(--bg-gradient);
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            color: #1e293b;
+            min-height: 100vh;
         }
 
-        /* Profil Qismi */
-        .profile-section { padding: 60px 0 30px; text-align: center; }
-        .avatar-container {
-            width: 190px; height: 190px; margin: 0 auto 25px;
-            position: relative; z-index: 1;
-        }
-        .avatar-container::after {
-            content: ''; position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px;
-            background: linear-gradient(45deg, var(--deep-pink), var(--lavender));
-            border-radius: 50%; z-index: -1; animation: pulse 3s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 0.2; }
-            100% { transform: scale(1); opacity: 0.5; }
-        }
-        .avatar-container img {
-            width: 100%; height: 100%; border-radius: 50%;
-            border: 5px solid white; object-fit: cover;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            padding: 40px;
+            margin-top: 50px;
         }
 
-        /* Glassmorphism Panel */
-        .glass-container {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px);
-            border-radius: 35px; border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 40px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-            margin-bottom: 50px;
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(219, 39, 119, 0.2);
+            transition: 0.4s;
         }
 
-        .section-title { color: var(--deep-pink); font-weight: 700; margin-bottom: 20px; }
+        .profile-img:hover { transform: scale(1.05); }
 
-        /* Matn bloklari */
-        .bio-box { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
-        .interest-tag {
-            background: white; padding: 8px 18px; border-radius: 50px;
-            margin: 5px; display: inline-block; font-size: 0.85rem;
-            border: 1px solid #f1f5f9; transition: 0.3s;
+        .section-title {
+            color: var(--rose);
+            font-weight: 700;
+            border-bottom: 2px solid #fbcfe8;
+            display: inline-block;
+            margin-bottom: 20px;
         }
-        .interest-tag:hover { border-color: var(--deep-pink); transform: translateY(-2px); }
 
-        /* Progress barlar */
-        .skill-item { margin-bottom: 15px; }
-        .progress { height: 8px; border-radius: 10px; background: #eee; }
-        .progress-bar { background: linear-gradient(to right, var(--deep-pink), var(--lavender)); }
-
-        /* Kontaktlar */
-        .contact-pill {
-            background: white; padding: 15px; border-radius: 18px;
-            display: flex; align-items: center; text-decoration: none;
-            color: #334155; margin-bottom: 12px; border: 1px solid #f1f5f9; transition: 0.3s;
+        .skill-bar {
+            height: 10px;
+            border-radius: 10px;
+            background: #e2e8f0;
+            margin-bottom: 20px;
         }
-        .contact-pill:hover { transform: translateX(8px); background: #fdf2f8; color: var(--deep-pink); }
-        .contact-pill i { font-size: 22px; margin-right: 15px; width: 35px; text-align: center; }
 
-        .btn-main {
-            background: linear-gradient(45deg, var(--deep-pink), var(--lavender));
-            color: white; border: none; padding: 14px 35px; border-radius: 50px;
-            font-weight: 600; width: 100%; transition: 0.3s;
+        .skill-progress {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--rose), var(--violet));
         }
-        /* AI rasm qismi */
-        .ai-img-preview { width: 100%; border-radius: 20px; margin-bottom: 15px; border: 3px solid white; }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #475569;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: translateX(10px);
+            background: #fdf2f8;
+            color: var(--rose);
+        }
+
+        .ai-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 1px dashed var(--violet);
+        }
+
+        canvas {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto !important;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <section class="profile-section" data-aos="fade-down">
-            <div class="avatar-container">
-                <img src="https://raw.githubusercontent.com/a187-droid/gulhayoabduganiyeva.github.io/main/1000048187.heic" alt="Gulhayo" onerror="this.src='https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg'">
+    <div class="container pb-5">
+        <div class="glass-card" data-aos="zoom-in">
+            <div class="text-center mb-5">
+                <img src="1000048187.heic" class="profile-img mb-3" alt="Gulhayo">
+                <h1 class="fw-bold">ABDUG'ANIYEVA GULHAYO</h1>
+                <p class="text-muted"><i class="fas fa-university me-2"></i>Qarshi davlat universiteti talabasi</p>
+                <div class="d-flex justify-content-center flex-wrap gap-2">
+                    <span class="badge bg-light text-dark border p-2 px-3 rounded-pill">Data-muhandis</span>
+                    <span class="badge bg-light text-dark border p-2 px-3 rounded-pill">AI Tadqiqotchi</span>
+                </div>
             </div>
-            <h1 class="fw-extrabold mb-1">ABDUG'ANIYEVA GULHAYO</h1>
-            <div class="mb-3">
-                <span class="badge bg-white text-dark p-2 px-3 rounded-pill shadow-sm border">
-                    <i class="fas fa-university text-danger me-2"></i> Qarshi davlat universiteti
-                </span>
-            </div>
-            <p class="text-muted col-md-8 mx-auto">
-                Matematika va kompyuter ilmlari fakulteti, Axborot tizimlari va texnologiyalari yo'nalishi talabasi.
-            </p>
-        </section>
-
-        <div class="glass-container" data-aos="fade-up">
             <div class="row g-5">
-                <div class="col-lg-7">
-                    <h4 class="section-title"><i class="fas fa-user-leaf me-2"></i> Men haqimda</h4>
-                    <div class="bio-box mb-4">
-                        Assalomu alaykum! Men Gulhayo, <b>QarSU</b> Axborot tizimlari yo'nalishida tahsil olaman. 
-                        Sun'iy intellekt, ma'lumotlar tahlili va matematik modellashtirishga juda qiziqaman. 
-                        Hozirda men kompyuter ko'rishi (Computer Vision) va data-setlar yaratish bo'yicha amaliy tajribalar o'tkazyapman.
-                    </div>
+                <div class="col-lg-6">
+                    <h4 class="section-title">Men haqimda</h4>
+                    <p class="text-secondary" style="text-align: justify;">
+                        Men hozirda Qarshi davlat universiteti Matematika va kompyuter ilmlari fakultetida tahsil olmoqdaman. 
+                        Asosiy qiziqishlarim Sun'iy intellekt tizimlarini yaratish va ma'lumotlarni tahlil qilishga qaratilgan. 
+                        Hozirda Computer Vision yo'nalishida o'z loyihalarim ustida ishlayapman.
+                    </p>
 
-                    <h4 class="section-title"><i class="fas fa-heart me-2"></i> Qiziqishlarim</h4>
-                    <div class="mb-4">
-                        <div class="interest-tag"><i class="fas fa-robot me-1 text-primary"></i> AI Modellar</div>
-                        <div class="interest-tag"><i class="fas fa-database me-1 text-success"></i> Ma'lumotlar Tahlili</div>
-                        <div class="interest-tag"><i class="fas fa-terminal me-1 text-dark"></i> Python Dasturlash</div>
-                        <div class="interest-tag"><i class="fas fa-book me-1 text-danger"></i> Mutolaa</div>
-                        <div class="interest-tag"><i class="fas fa-language me-1 text-warning"></i> Chet tillari</div>
+                    <h4 class="section-title mt-4">Ko'nikmalarim</h4>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small mb-1"><span>Python & ML</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
                     </div>
-
-                    <h4 class="section-title"><i class="fas fa-star me-2"></i> Ko'nikmalarim</h4>
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-1 small"><span>Ma'lumotlar Tahlili</span><span>85%</span></div>
-                        <div class="progress"><div class="progress-bar" style="width: 85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="d-flex justify-content-between mb-1 small"><span>Sun'iy Intellekt (ML)</span><span>70%</span></div>
-                        <div class="progress"><div class="progress-bar" style="width: 70%"></div></div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small mb-1"><span>Ma'lumotlar tahlili</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
                     </div>
                 </div>
 
-                <div class="col-lg-5">
-                    <h4 class="section-title"><i class="fas fa-microchip me-2"></i> AI Vision Loyihasi</h4>
-                    <div class="bio-box text-center mb-4">
-                        <img src="https://raw.githubusercontent.com/a187-droid/gulhayoabduganiyeva.github.io/main/1000048187.heic" class="ai-img-preview" alt="Loyiha">
-                        <p class="small text-muted">Kabutarlarni tanuvchi Teachable Machine modeli:</p>
+                <div class="col-lg-6">
+                    <h4 class="section-title">Bog'lanish</h4>
+                    <a href="https://t.me/Ruzmatuvna_G" class="contact-link">
+                        <i class="fab fa-telegram fa-lg me-3 text-primary"></i>
+                        <span>@Ruzmatuvna_G</span>
+                    </a>
+                    <a href="mailto:gulhayoabduganiyeva36@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope fa-lg me-3 text-danger"></i>
+                        <span>gulhayoabduganiyeva36@gmail.com</span>
+                    </a>
+
+                    <h4 class="section-title mt-4">AI Loyiham</h4>
+                    <div class="ai-box">
+                        <p class="small text-muted mb-3">Kabutarlarni aniqlash tizimi (AI Vision)</p>
                         <div id="webcam-container"></div>
-                        <div id="label-container" class="mt-2"></div>
-                        <button class="btn btn-main mt-3" onclick="init()">
-                            <i class="fas fa-play me-2"></i> Tizimni Ishga Tushirish
+                        <div id="label-container" class="mt-2 small fw-bold"></div>
+                        <button class="btn btn-dark w-100 mt-3 rounded-pill" onclick="init()">
+                            <i class="fas fa-camera me-2"></i>Kamerani yoqish
                         </button>
                     </div>
-                    <h4 class="section-title"><i class="fas fa-id-card me-2"></i> Bog'lanish</h4>
-                    <a href="https://t.me/Ruzmatuvna_G" class="contact-pill">
-                        <i class="fab fa-telegram text-primary"></i>
-                        <div><span class="d-block small opacity-50">Telegram</span><span class="fw-bold">@Ruzmatuvna_G</span></div>
-                    </a>
-                    <a href="mailto:gulhayoabduganiyeva36@gmail.com" class="contact-pill">
-                        <i class="fas fa-envelope text-danger"></i>
-                        <div><span class="d-block small opacity-50">Email</span><span class="fw-bold">gulhayoabduganiyeva36...</span></div>
-                    </a>
-                    <a href="tel:+998330031606" class="contact-pill">
-                        <i class="fas fa-phone text-success"></i>
-                        <div><span class="d-block small opacity-50">Telefon</span><span class="fw-bold">+998 33 003 16 06</span></div>
-                    </a>
                 </div>
             </div>
 
             <div class="mt-5">
-                <h4 class="section-title"><i class="fas fa-folder-open me-2"></i> Ma'lumotlar Ombori</h4>
-                <div id="data-wrapper"></div>
+                <h4 class="section-title">Ma'lumotlar ombori</h4>
+                <div id="table-container"></div>
             </div>
         </div>
-
-        <footer class="text-center pb-5 opacity-50 small">
-            <p>© 2026 Abdug'aniyeva Gulhayo • QarSU Talabasi</p>
-        </footer>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-    
-    <script>
-        AOS.init({ duration: 1000, once: true });
 
-        // AI Model
+    <script>
+        AOS.init();
+
+        // AI funksiyasi
         const URL = "https://teachablemachine.withgoogle.com/models/aCwgeVOmQ/";
         let model, webcam, labelContainer, maxPredictions;
 
         async function init() {
-            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
-            webcam = new tmImage.Webcam(250, 250, true);
-            await webcam.setup(); await webcam.play();
+            webcam = new tmImage.Webcam(300, 300, true);
+            await webcam.setup();
+            await webcam.play();
             window.requestAnimationFrame(loop);
             document.getElementById("webcam-container").appendChild(webcam.canvas);
             labelContainer = document.getElementById("label-container");
@@ -199,30 +191,30 @@
                 labelContainer.appendChild(document.createElement("div"));
             }
         }
-        async function loop() { webcam.update(); await predict(); window.requestAnimationFrame(loop); }
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
             for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.childNodes[i].innerHTML = 
-                    <div style="font-size:12px; font-weight:bold; background:#fff; margin-top:5px; border-radius:5px; padding:5px; border:1px solid #eee">
-                        ${prediction[i].className}: ${(prediction[i].probability * 100).toFixed(0)}%
-                    </div>;
+                const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+                labelContainer.childNodes[i].innerHTML = classPrediction;
             }
         }
 
-        // Data-set Jadvali
+        // Jadval funksiyasi
         new gridjs.Grid({
-            columns: ["№", "Loyiha Nomi", "Sohasi", "Hajmi", "Holati"],
+            columns: ["№", "Loyiha", "Yo'nalish", "Holati"],
             data: [
-                ["1", "Kabutar Tanuvchi AI", "Komp. Ko'rishi", "850 ta rasm", "Tugatilgan"],
-                ["2", "QarSU Talabalar Ma'lumoti", "Tahlil", "1500+ qator", "Jarayonda"],
-                ["3", "Ob-havo Monitoringi", "IoT", "500 ta ma'lumot", "Tayyor"]
+                ["1", "Kabutarlar tahlili", "AI Vision", "Tayyor"],
+                ["2", "QarSU talabalar bazasi", "Big Data", "Jarayonda"],
+                ["3", "Shaxsiy portfoli", "Web Design", "Tayyor"]
             ],
-            language: { 'search': { 'placeholder': 'Qidirish...' }, 'pagination': { 'showing': 'Ko\'rsatmoqda', 'results': () => 'natijalar' } },
-            style: { th: { background: '#fdf2f8', color: '#db2777' } },
-            pagination: { limit: 3 }
-        }).render(document.getElementById("data-wrapper"));
+            style: { table: { fontSize: '14px' } }
+        }).render(document.getElementById("table-container"));
     </script>
 </body>
 </html>
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(219, 39, 119, 0.2); color: white; }
