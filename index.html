@@ -3,219 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdug'aniyeva Gulhayo | Portfoli</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <title>Abdug'aniyeva Gulhayo | Portfolio</title>
     <style>
-        :root {
-            --rose: #db2777;
-            --violet: #7c3aed;
-            --bg-gradient: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%);
-        }
-
+        /* Umumiy ko'rinish */
         body {
-            background: var(--bg-gradient);
-            font-family: 'Poppins', sans-serif;
-            color: #1e293b;
-            min-height: 100vh;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            padding: 40px;
-            margin-top: 50px;
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 10px 25px rgba(219, 39, 119, 0.2);
-            transition: 0.4s;
-        }
-
-        .profile-img:hover { transform: scale(1.05); }
-
-        .section-title {
-            color: var(--rose);
-            font-weight: 700;
-            border-bottom: 2px solid #fbcfe8;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .skill-bar {
-            height: 10px;
-            border-radius: 10px;
-            background: #e2e8f0;
-            margin-bottom: 20px;
-        }
-
-        .skill-progress {
-            height: 100%;
-            border-radius: 10px;
-            background: linear-gradient(90deg, var(--rose), var(--violet));
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #475569;
-            margin-bottom: 10px;
-            transition: 0.3s;
-        }
-
-        .contact-link:hover {
-            transform: translateX(10px);
-            background: #fdf2f8;
-            color: var(--rose);
-        }
-
-        .ai-box {
-            background: #ffffff;
-            border-radius: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
             padding: 20px;
             text-align: center;
-            border: 1px dashed var(--violet);
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        img.profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3498db;
+        }
+        h1 { color: #2c3e50; }
+        
+        /* Menyu tugmachalari */
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .menu button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
         }
 
-        canvas {
-            border-radius: 15px;
-            max-width: 100%;
-            height: auto !important;
+        /* Bo'limlar */
+        .content-section {
+            display: none; /* Dastlab hammasi yashirin */
+            padding: 20px;
+            border-top: 1px solid #eee;
+            animation: fadeIn 0.5s;
+            text-align: left;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .active { display: block; }
+
+        .skill-bar {
+            background: #eee;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .skill-fill {
+            background: #3498db;
+            color: white;
+            padding: 5px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container pb-5">
-        <div class="glass-card" data-aos="zoom-in">
-            <div class="text-center mb-5">
-                <img src="1000048187.heic" class="profile-img mb-3" alt="Gulhayo">
-                <h1 class="fw-bold">ABDUG'ANIYEVA GULHAYO</h1>
-                <p class="text-muted"><i class="fas fa-university me-2"></i>Qarshi davlat universiteti talabasi</p>
-                <div class="d-flex justify-content-center flex-wrap gap-2">
-                    <span class="badge bg-light text-dark border p-2 px-3 rounded-pill">Data-muhandis</span>
-                    <span class="badge bg-light text-dark border p-2 px-3 rounded-pill">AI Tadqiqotchi</span>
-                </div>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <h4 class="section-title">Men haqimda</h4>
-                    <p class="text-secondary" style="text-align: justify;">
-                        Men hozirda Qarshi davlat universiteti Matematika va kompyuter ilmlari fakultetida tahsil olmoqdaman. 
-                        Asosiy qiziqishlarim Sun'iy intellekt tizimlarini yaratish va ma'lumotlarni tahlil qilishga qaratilgan. 
-                        Hozirda Computer Vision yo'nalishida o'z loyihalarim ustida ishlayapman.
-                    </p>
+<div class="container">
+    <img src="1000048187.heic" alt="Gulhayo" class="profile-pic" onerror="this.src='https://via.placeholder.com/150'">
+    
+    <h1>ABDUG'ANIYEVA GULHAYO</h1>
+    <p>Data-muhandis | AI Tadqiqotchi</p>
 
-                    <h4 class="section-title mt-4">Ko'nikmalarim</h4>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between small mb-1"><span>Python & ML</span><span>80%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between small mb-1"><span>Ma'lumotlar tahlili</span><span>75%</span></div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <h4 class="section-title">Bog'lanish</h4>
-                    <a href="https://t.me/Ruzmatuvna_G" class="contact-link">
-                        <i class="fab fa-telegram fa-lg me-3 text-primary"></i>
-                        <span>@Ruzmatuvna_G</span>
-                    </a>
-                    <a href="mailto:gulhayoabduganiyeva36@gmail.com" class="contact-link">
-                        <i class="fas fa-envelope fa-lg me-3 text-danger"></i>
-                        <span>gulhayoabduganiyeva36@gmail.com</span>
-                    </a>
-
-                    <h4 class="section-title mt-4">AI Loyiham</h4>
-                    <div class="ai-box">
-                        <p class="small text-muted mb-3">Kabutarlarni aniqlash tizimi (AI Vision)</p>
-                        <div id="webcam-container"></div>
-                        <div id="label-container" class="mt-2 small fw-bold"></div>
-                        <button class="btn btn-dark w-100 mt-3 rounded-pill" onclick="init()">
-                            <i class="fas fa-camera me-2"></i>Kamerani yoqish
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-5">
-                <h4 class="section-title">Ma'lumotlar ombori</h4>
-                <div id="table-container"></div>
-            </div>
-        </div>
+    <div class="menu">
+        <button onclick="openSection('about')">Men haqimda</button>
+        <button onclick="openSection('edu')">O'qish joyim</button>
+        <button onclick="openSection('projects')">Loyihalarim</button>
+        <button onclick="openSection('articles')">Maqolalarim</button>
+        <button onclick="openSection('address')">Manzil & Aloqa</button>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <div id="about" class="content-section active">
+        <h3>Men haqimda</h3>
+        <p>Qarshi davlat universiteti Matematika va kompyuter ilmlari fakulteti talabasiman. Asosiy qiziqishlarim Sun'iy intellekt tizimlarini yaratish va ma'lumotlarni tahlil qilishga qaratilgan.</p>
+        <div class="skill-bar"><div class="skill-fill" style="width: 80%;">Python & ML 80%</div></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 75%;">Data Analysis 75%</div></div>
+    </div>
 
-    <script>
-        AOS.init();
+    <div id="edu" class="content-section">
+        <h3>O'qish joyim</h3>
+        <p><strong>Universitet:</strong> Qarshi davlat universiteti</p>
+        <p><strong>Fakultet:</strong> Matematika va kompyuter ilmlari</p>
+        <p><strong>Yo'nalish:</strong> Sun'iy intellekt va ma'lumotlar muhandisligi</p>
+    </div>
 
-        // AI funksiyasi
-        const URL = "https://teachablemachine.withgoogle.com/models/aCwgeVOmQ/";
-        let model, webcam, labelContainer, maxPredictions;
+    <div id="projects" class="content-section">
+        <h3>Loyihalarim</h3>
+        <ul>
+            <li><strong>AI Vision:</strong> Kabutarlarni aniqlash tizimi.</li>
+            <li><strong>Computer Vision:</strong> Tasvirlarga ishlov berish algoritmlari.</li>
+        </ul>
+        <div id="articles" class="content-section">
+        <h3>Maqolalarim</h3>
+        <ul>
+            <li>"Sun'iy intellektning zamonaviy jamiyatdagi o'rni" - 2024</li>
+            <li>"Data Science asoslari: Python tili misolida" - 2025</li>
+        </ul>
+    </div>
 
-        async function init() {
-            const modelURL = URL + "model.json";
-            const metadataURL = URL + "metadata.json";
-            model = await tmImage.load(modelURL, metadataURL);
-            maxPredictions = model.getTotalClasses();
-            webcam = new tmImage.Webcam(300, 300, true);
-            await webcam.setup();
-            await webcam.play();
-            window.requestAnimationFrame(loop);
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.appendChild(document.createElement("div"));
-            }
-        }
-        async function loop() {
-            webcam.update();
-            await predict();
-            window.requestAnimationFrame(loop);
-        }
+    <div id="address" class="content-section">
+        <h3>Manzil va Aloqa</h3>
+        <p>📍 <strong>Yashash manzilim:</strong> O'zbekiston, Qashqadaryo viloyati, Qarshi shahri.</p>
+        <p>📧 <strong>Email:</strong> gulhayoabduganiyeva36@gmail.com</p>
+        <p>✈️ <strong>Telegram:</strong> <a href="https://t.me/Ruzmatuvna_G">@Ruzmatuvna_G</a></p>
+    </div>
 
-        async function predict() {
-            const prediction = await model.predict(webcam.canvas);
-            for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
-                labelContainer.childNodes[i].innerHTML = classPrediction;
-            }
-        }
-
-        // Jadval funksiyasi
-        new gridjs.Grid({
-            columns: ["№", "Loyiha", "Yo'nalish", "Holati"],
-            data: [
-                ["1", "Kabutarlar tahlili", "AI Vision", "Tayyor"],
-                ["2", "QarshiDU talabalar bazasi", "Big Data", "Jarayonda"],
-                ["3", "Shaxsiy portfoli", "Web Design", "Tayyor"]
-            ],
-            style: { table: { fontSize: '14px' } }
-        }).render(document.getElementById("table-container"));
-    </script>
-</body>
-</html>
-
+</div>
+    </div>
