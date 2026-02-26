@@ -3,164 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gulhayo | Creative Portfolio</title>
+    <title>Gulhayo | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --accent: #d2b4b4; /* Siz yuborgan rasmdagi mayin rang */
+            --accent: #d2b4b4; 
             --dark: #4e342e;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.88);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
         body {
-            height: 100vh;
-            overflow: hidden; /* Skrolni yo'qotamiz, menyular alohida ochiladi */
-            background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), 
+            height: 100vh; overflow: hidden;
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
                         url('https://i.pinimg.com/originals/30/8a/8a/308a8a68e82a3821a7337989337038e4.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* SICHQONCHA EFFEKTI (ZARRALAR) */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            z-index: 9999;
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-        }
-
-        /* CHIZMADAGI MENYU (BULUTCHALAR) */
-        .main-nav {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid var(--accent);
-            margin-bottom: 30px;
+        /* CHIZMADAGI OVAL MENYU */
+        .main-container { text-align: center; z-index: 10; }
+        
+        .profile-bubble {
+            width: 140px; height: 140px; border-radius: 50%;
+            background: white; border: 4px solid var(--accent);
+            margin: 0 auto 40px; 
             background-image: url('https://i.pinimg.com/736x/0a/6d/4e/0a6d4e2878c7755b7f14b3f86e9e38f6.jpg');
-            background-size: cover;
+            background-size: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .menu-item {
-            background: var(--glass);
-            border: 1px solid var(--accent);
-            padding: 12px 35px;
-            border-radius: 50px; /* Chizmadagi oval shakl */
-            margin: 10px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            color: var(--dark);
-            transition: 0.4s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-transform: lowercase; /* Chizmadagidek uslub */
+        .menu-cloud {
+            display: flex; flex-direction: column; gap: 15px; align-items: center;
         }
 
-        .menu-item:hover {
-            transform: scale(1.1) translateX(10px);
-            background: white;
-            border-color: var(--dark);
+        .oval-btn {
+            background: var(--glass); border: 1px solid var(--accent);
+            padding: 14px 45px; border-radius: 60px;
+            cursor: pointer; font-size: 0.85rem; letter-spacing: 2px;
+            color: var(--dark); transition: 0.4s;
+            text-transform: lowercase; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        /* HAR BIR BO'LIM UCHUN KATTA EKRAN (MODAL) */
-        .content-section {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 2000;
-            display: none; /* Oldindan ko'rinmaydi */
-            padding: 60px 20px;
-            overflow-y: auto;
-            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        .oval-btn:hover {
+            transform: scale(1.05);
+            background: white; border-color: var(--dark);
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+        /* SECTIONS */
+        .content-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none;
+            padding: 40px 20px; overflow-y: auto;
+            animation: openIn 0.4s ease-out;
         }
 
-        .close-btn {
-            position: fixed;
-            top: 30px; right: 30px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--dark);
-            z-index: 2100;
+        @keyframes openIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .close-icon {
+            position: fixed; top: 20px; right: 30px; font-size: 2.5rem;
+            cursor: pointer; color: var(--dark); z-index: 2100;
         }
 
-        .container { max-width: 800px; margin: 0 auto; text-align: center; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; }
-      /* AI CAMERA QISMI */
-        #webcam-container { 
-            margin: 20px auto; border: 5px solid #eee; border-radius: 20px; 
-            width: 240px; height: 240px; overflow: hidden; 
+        .inner-content { max-width: 900px; margin: 0 auto; text-align: center; padding-bottom: 50px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; color: var(--dark); }
+
+        .pdf-viewer { 
+            width: 100%; height: 75vh; border-radius: 15px; border: 1px solid #eee; 
+            margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
         }
 
-        .pdf-frame { width: 100%; height: 600px; border-radius: 15px; border: 1px solid #eee; }
+        #webcam-wrap { 
+            margin: 20px auto; border-radius: 20px; border: 5px solid #f9f9f9;
+            width: 260px; height: 260px; overflow: hidden; background: #eee;
+        }
     </style>
 </head>
 <body>
 
-    <div class="main-nav">
-        <div class="profile-circle"></div>
-        <div class="menu-item" onclick="openSection('about')">men haqimda</div>
-        <div class="menu-item" onclick="openSection('aims')">maqsadim</div>
-        <div class="menu-item" onclick="openSection('ai-project')">loyihalarim</div>
-        <div class="menu-item" onclick="openSection('articles')">maqolalarim</div>
-        <div class="menu-item" onclick="openSection('contact')">bog'lanish</div>
+    <div class="main-container">
+        <div class="profile-bubble"></div>
+        <div class="menu-cloud">
+            <div class="oval-btn" onclick="show('about')">men haqimda</div>
+            <div class="oval-btn" onclick="show('aims')">maqsadim</div>
+            <div class="oval-btn" onclick="show('ai')">loyihalarim</div>
+            <div class="oval-btn" onclick="show('docs')">maqolalarim</div>
+            <div class="oval-btn" onclick="show('contact')">bog'lanish</div>
+        </div>
     </div>
-
-    <div id="about" class="content-section">
-        <span class="close-btn" onclick="closeSection('about')">&times;</span>
-        <div class="container">
+    <div id="about" class="content-overlay">
+        <span class="close-icon" onclick="hide('about')">&times;</span>
+        <div class="inner-content">
             <h2>Men Haqimda</h2>
-            <p>Qarshi Davlat Universiteti talabasi, AI Researcher.</p>
+            <p style="font-size: 1.1rem; color: #555;">Qarshi Davlat Universiteti talabasi, AI Researcher.</p>
         </div>
     </div>
 
-    <div id="articles" class="content-section">
-        <span class="close-btn" onclick="closeSection('articles')">&times;</span>
-        <div class="container">
+    <div id="docs" class="content-overlay">
+        <span class="close-icon" onclick="hide('docs')">&times;</span>
+        <div class="inner-content">
             <h2>Maqolalarim</h2>
-            <iframe class="pdf-frame" src="313-320.pdf"></iframe>
-            <iframe class="pdf-frame" src="MaqolaResOAK-2025ajratilgani.pdf" style="margin-top: 20px;"></iframe>
+            <h3 style="margin-bottom:10px; font-size:1rem; color:#888;">1. Big Data Tadbig'i</h3>
+            <iframe class="pdf-viewer" src="313-320.pdf"></iframe>
+            
+            <h3 style="margin-bottom:10px; font-size:1rem; color:#888;">2. ResOAK-2025</h3>
+            <iframe class="pdf-viewer" src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
         </div>
     </div>
 
-    <div id="ai-project" class="content-section">
-        <span class="close-btn" onclick="closeSection('ai-project')">&times;</span>
-        <div class="container">
+    <div id="ai" class="content-overlay">
+        <span class="close-icon" onclick="hide('ai')">&times;</span>
+        <div class="inner-content">
             <h2>AI: Kabutarni Tanish</h2>
-            <button class="menu-item" onclick="initAI()">Modelni ishga tushirish</button>
-            <button class="menu-item" onclick="stopAI()" style="background: #fdf2f4;">To'xtatish</button>
-            <div id="webcam-container"></div>
-            <div id="label-container"></div>
+            <button class="oval-btn" onclick="startAI()">Kamerani yoqish</button>
+            <button class="oval-btn" onclick="stopAI()" style="background:#fff5f5">To'xtatish</button>
+            <div id="webcam-wrap"></div>
+            <div id="label-container" style="font-size: 1.2rem; margin-top: 20px;"></div>
         </div>
     </div>
 
-    <div id="contact" class="content-section">
-        <span class="close-btn" onclick="closeSection('contact')">&times;</span>
-        <div class="container">
+    <div id="contact" class="content-overlay">
+        <span class="close-icon" onclick="hide('contact')">&times;</span>
+        <div class="inner-content">
             <h2>Bog'lanish</h2>
             <p>Telegram: @G_Abduganiyeva</p>
         </div>
@@ -170,70 +135,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
     <script>
-        // SICHQONCHA EFFEKTI (SARIQ YULDUZCHA O'RNIGA PUSHTI ZARRALAR)
-        document.addEventListener('mousemove', function(e) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            document.body.appendChild(particle);
-
-            particle.style.left = e.clientX + 'px';
-            particle.style.top = e.clientY + 'px';
-
-            setTimeout(() => {
-                particle.style.transform = translate(${(Math.random()-0.5)*50}px, ${(Math.random()-0.5)*50}px) scale(0);
-                particle.style.opacity = '0';
-            }, 10);
-
-            setTimeout(() => { particle.remove(); }, 600);
-        });
-
-        // BO'LIMLARNI BOSHQARISH
-        function openSection(id) {
-            document.getElementById(id).style.display = 'block';
+        function show(id) { document.getElementById(id).style.display = 'block'; }
+        function hide(id) { 
+            document.getElementById(id).style.display = 'none'; 
+            if(id === 'ai') stopAI();
         }
 
-        function closeSection(id) {
-            document.getElementById(id).style.display = 'none';
-            if(id === 'ai-project') stopAI();
-        }
-
-        // AI MODEL FUNKSIYALARI
-        const URL = "./my_model/";
         let model, webcam, labelContainer, maxPredictions, animationId;
-
-        async function initAI() {
-            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
-            maxPredictions = model.getTotalClasses();
-            webcam = new tmImage.Webcam(240, 240, true);
-            await webcam.setup();
-            await webcam.play();
-            window.requestAnimationFrame(loop);
-          document.getElementById("webcam-container").innerHTML = "";
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-            labelContainer = document.getElementById("label-container");
-            labelContainer.innerHTML = "";
-            for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.appendChild(document.createElement("div"));
-            }
+        async function startAI() {
+            try {
+                const URL = "./my_model/";
+                model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+                maxPredictions = model.getTotalClasses();
+                webcam = new tmImage.Webcam(260, 260, true);
+                await webcam.setup(); await webcam.play();
+                window.requestAnimationFrame(loop);
+                document.getElementById("webcam-wrap").innerHTML = "";
+                document.getElementById("webcam-wrap").appendChild(webcam.canvas);
+                labelContainer = document.getElementById("label-container");
+                labelContainer.innerHTML = "";
+                for (let i = 0; i < maxPredictions; i++) labelContainer.appendChild(document.createElement("div"));
+            } catch(e) { alert("Xato: Model yuklanmadi!"); }
         }
-
-        async function loop() {
-            webcam.update();
-            await predict();
-            animationId = window.requestAnimationFrame(loop);
-        }
-
+        async function loop() { webcam.update(); await predict(); animationId = window.requestAnimationFrame(loop); }
         async function predict() {
-            const prediction = await model.predict(webcam.canvas);
+            const p = await model.predict(webcam.canvas);
             for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.childNodes[i].innerHTML = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+                labelContainer.childNodes[i].innerHTML = p[i].className + ": " + (p[i].probability * 100).toFixed(0) + "%";
             }
         }
-
         function stopAI() {
             if (webcam) webcam.stop();
             if (animationId) window.cancelAnimationFrame(animationId);
-            document.getElementById("webcam-container").innerHTML = "";
+            document.getElementById("webcam-wrap").innerHTML = "";
             document.getElementById("label-container").innerHTML = "";
         }
     </script>
