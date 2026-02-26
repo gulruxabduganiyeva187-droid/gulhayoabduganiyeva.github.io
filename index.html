@@ -18,11 +18,12 @@
         
         body { background: #fffcfc; color: var(--text); overflow-x: hidden; }
 
-        /* Estetik pastel fon */
+        /* Estetik pastel fon (Pinterest linki qo'yishingiz mumkin) */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(120deg, #ffafbd 0%, #ffc3a0 100%);
-            opacity: 0.15; z-index: -1;
+            background: linear-gradient(120deg, rgba(255,175,189,0.4) 0%, rgba(255,195,160,0.4) 100%),
+                        url('https://i.pinimg.com/originals/5d/4d/77/5d4d776435733f119077270388e40424.jpg'); /* Pinterest fon namunasi */
+            background-size: cover; background-position: center; z-index: -1;
         }
 
         /* Navbar */
@@ -66,16 +67,17 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.05); background: #f9f9f9;
             display: flex; align-items: center; justify-content: center;
         }
-        #label-container { margin-top: 20px; font-weight: 500; color: var(--rose); font-size: 1.2rem; }
+        #label-container { margin-top: 20px; font-weight: 500; color: #ef629f; font-size: 1.2rem; }
         
         .ai-btn { 
-            background: linear-gradient(to right, #ffafbd, #ffc3a0); 
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
             color: white; padding: 15px 40px; border: none; border-radius: 100px; 
             font-weight: 600; cursor: pointer; transition: 0.4s;
             box-shadow: 0 10px 25px rgba(255, 175, 189, 0.4); margin: 10px;
         }
         .ai-btn.stop { background: linear-gradient(to right, #eecda3, #ef629f); }
         .ai-btn:hover { transform: scale(1.05); }
+
         /* PDF Frame */
         .pdf-frame { width: 100%; height: 500px; border: none; border-radius: 30px; margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
@@ -100,7 +102,7 @@
     </nav>
 
     <section class="hero">
-        <img src="profil_rasmim.jpg" class="profile-img" alt="Gulhayo">
+        <img src="https://i.pinimg.com/736x/0a/6d/4e/0a6d4e2878c7755b7f14b3f86e9e38f6.jpg" class="profile-img" alt="Gulhayo">
         <h1>Gulhayo Abdug'aniyeva</h1>
         <p class="sub-text">AI Researcher • Data Scientist</p>
     </section>
@@ -108,8 +110,8 @@
     <section id="about" class="section">
         <div class="glass-card">
             <h2>O'zim Haqimda</h2>
-            <p style="line-height: 2;">Qarshi Davlat Universiteti talabasiman. Sun'iy intellekt va neyron tarmoqlar yordamida dunyoni yanada go'zal va aqlli qilish mening asosiy maqsadim.</p>
-            <p style="margin-top: 15px; color: var(--rose); font-weight: 600;">Ta'lim: 2022 - 2026</p>
+            <p style="line-height: 2;">Qarshi Davlat Universiteti talabasiman. Sun'iy intellekt va neyron tarmoqlar dunyosini kashf etish mening asosiy ishtiyoqim.</p>
+            <p style="margin-top: 15px; color: var(--rose); font-weight: 600;">Ta'lim yillari: 2022 - 2026</p>
         </div>
     </section>
 
@@ -120,17 +122,17 @@
             <iframe class="pdf-frame" src="313-320.pdf"></iframe>
             
             <h3 style="font-size: 1rem; color: #999; margin-top: 40px;">2. SI va Ma'lumotlar Bazasi</h3>
-            <iframe class="pdf-frame" src="Maqola ResOAK-2025 ajratilgani.pdf"></iframe>
+            <iframe class="pdf-frame" src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
         </div>
     </section>
 
     <section id="ai-project" class="section">
         <div class="glass-card">
             <h2>AI: Kabutarni Tanish</h2>
-            <p style="margin-bottom: 20px; font-style: italic; color: #aaa;">Kamera orqali real vaqtda aniqlash</p>
+            <p style="margin-bottom: 20px; font-style: italic; color: #aaa;">Kamera orqali real vaqtda aniqlash tizimi</p>
             
             <div id="button-group">
-                <button id="start-btn" class="ai-btn" type="button" onclick="init()">KAMERANI YOQISH</button>
+                <button id="start-btn" class="ai-btn" type="button" onclick="init()">MODELNI ISHGA TUSHIRISH</button>
                 <button id="stop-btn" class="ai-btn stop" type="button" onclick="stopWebcam()" style="display:none;">KAMERANI O'CHIRISH</button>
             </div>
 
@@ -155,15 +157,15 @@
     <footer>
         <p>&copy; 2026 GULHAYO. Crafted with love & AI.</p>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     
     <script type="text/javascript">
-        // Model manzili (GitHub Pages-da xato qilmaslik uchun to'liq manzil)
         const URL = "./my_model/";
         let model, webcam, labelContainer, maxPredictions;
         let isRunning = false;
+        let animationId;
+
         async function init() {
             if(isRunning) return;
             const modelURL = URL + "model.json";
@@ -179,7 +181,7 @@
                 await webcam.play();
                 
                 isRunning = true;
-                window.requestAnimationFrame(loop);
+                animationId = window.requestAnimationFrame(loop);
 
                 document.getElementById("start-btn").style.display = "none";
                 document.getElementById("stop-btn").style.display = "inline-block";
@@ -192,7 +194,7 @@
                     labelContainer.appendChild(document.createElement("div"));
                 }
             } catch (e) {
-                alert("Kamera yoki model yuklashda xatolik!");
+                alert("Model yuklanmadi. Fayllar GitHub-da 'my_model/' papkasida ekanligini tekshiring.");
             }
         }
 
@@ -200,7 +202,7 @@
             if(!isRunning) return;
             webcam.update();
             await predict();
-            window.requestAnimationFrame(loop);
+            animationId = window.requestAnimationFrame(loop);
         }
 
         async function predict() {
@@ -212,10 +214,13 @@
         }
 
         function stopWebcam() {
+            isRunning = false;
             if (webcam) {
                 webcam.stop();
             }
-            isRunning = false;
+            if (animationId) {
+                window.cancelAnimationFrame(animationId);
+            }
             document.getElementById("webcam-container").innerHTML = '<i class="fas fa-camera" style="font-size: 3rem; color: #eee;"></i>';
             document.getElementById("label-container").innerHTML = "";
             document.getElementById("start-btn").style.display = "inline-block";
@@ -224,4 +229,3 @@
     </script>
 </body>
 </html>
-        
