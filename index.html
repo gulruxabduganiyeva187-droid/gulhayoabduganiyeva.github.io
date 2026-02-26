@@ -4,92 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gulhayo | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { 
-            --soft-pink: #f8e1e7;
-            --deep-brown: #5d4037;
-            --text-main: #444;
-            --glass: rgba(255, 255, 255, 0.85);
+            --dark-brown: #4e342e;
+            --soft-beige: #f5f5f5;
+            --glass-bg: rgba(255, 255, 255, 0.82);
+            --accent-color: #d7ccc8;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lora', serif; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
-        body { color: var(--text-main); line-height: 1.6; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--dark-brown); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* FON RASMI (Siz yuborgan rasm uslubida) */
+        /* FON RASMI VA YORQINLIKNI BOSHQARISH */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* Rasm linkini GitHub-ga yuklab, nomini o'zgartirsangiz bo'ladi */
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
-                        url('https://i.pinimg.com/originals/30/8a/8a/308a8a68e82a3821a7337989337038e4.jpg'); 
-            background-size: cover; background-position: center; z-index: -1;
+            /* Siz yuborgan rasm uslubidagi Pinterest linki */
+            background-image: url('https://i.pinimg.com/originals/9e/12/32/9e1232807831d87135e6108168277271.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
         }
 
-        /* Navbar */
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            /* Bu qatlam yorqinlikni pasaytiradi va matnni o'qishni osonlashtiradi */
+            background: rgba(255, 250, 250, 0.6); 
+            backdrop-filter: blur(3px); /* Fonni biroz xiralashtirish */
+            z-index: -1;
+        }
+
+        /* NAVIGATSIYA */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(210, 180, 180, 0.3); padding: 15px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 0;
         }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; list-style: none; gap: 35px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; list-style: none; gap: 30px; }
         .nav-link { 
-            font-family: 'Montserrat', sans-serif; color: #888; text-decoration: none; 
-            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
+            color: var(--dark-brown); text-decoration: none; font-size: 0.75rem; 
+            font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
         }
-        .nav-link:hover { color: var(--deep-brown); }
+        .nav-link:hover { opacity: 0.6; }
 
-        /* Hero Section */
+        /* HERO QISMI */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .profile-img {
-            width: 170px; height: 170px; border-radius: 50%;
-            object-fit: cover; border: 5px solid white; 
+            width: 180px; height: 180px; border-radius: 50%;
+            object-fit: cover; border: 6px solid white; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 25px;
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--deep-brown); margin-bottom: 5px; }
-        .sub-title { font-family: 'Montserrat', sans-serif; color: #a67c7c; letter-spacing: 5px; font-size: 0.8rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+        .sub-title { letter-spacing: 6px; font-size: 0.8rem; color: #8d6e63; text-transform: uppercase; }
 
-        /* Glassmorphism Cards */
-        .section { padding: 100px 20px; max-width: 900px; margin: 0 auto; }
+        /* KARTALAR */
+        .section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
         .glass-card { 
-            background: var(--glass); border-radius: 30px; padding: 45px; 
-            backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05); text-align: center;
+            background: var(--glass-bg); border-radius: 25px; padding: 40px; 
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            margin-bottom: 40px;
         }
-        h2 { font-family: 'Playfair Display', serif; color: var(--deep-brown); margin-bottom: 25px; font-size: 2rem; }
+        h2 { font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 2rem; text-align: center; }
 
-        /* AI Model Styles */
+        /* AI MODEL ELEMENTLARI */
         #webcam-container { 
-            margin: 25px auto; border: 8px solid white; border-radius: 20px; 
-            overflow: hidden; width: 240px; height: 240px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); background: #eee;
-            display: flex; align-items: center; justify-content: center;
+            margin: 20px auto; border: 10px solid white; border-radius: 20px; 
+            overflow: hidden; width: 260px; height: 260px; 
+            background: #eee; display: flex; align-items: center; justify-content: center;
         }
-        #label-container { margin-top: 15px; font-weight: 500; color: var(--deep-brown); font-size: 1.1rem; }
-        
+        #label-container { margin-top: 15px; text-align: center; font-weight: 600; font-size: 1.1rem; color: #6d4c41; }
         .btn { 
-            background: #fff; color: var(--deep-brown); border: 1px solid #d2b4b4;
-            padding: 12px 35px; border-radius: 50px; cursor: pointer; transition: 0.4s;
-            font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 1px;
-            margin: 10px;
+            background: var(--dark-brown); color: white; border: none;
+            padding: 14px 35px; border-radius: 50px; cursor: pointer; transition: 0.4s;
+            font-size: 0.8rem; letter-spacing: 1px; font-weight: 600; display: block; margin: 10px auto;
         }
-        .btn:hover { background: var(--soft-pink); transform: translateY(-2px); }
-        /* PDF Frame */
-        .pdf-frame { width: 100%; height: 500px; border: none; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .btn:hover { background: #6d4c41; transform: scale(1.02); }
+        .btn-stop { background: #a1887f; }
 
-        footer { text-align: center; padding: 60px; color: #a67c7c; font-size: 0.8rem; letter-spacing: 1px; }
-        .socials a { color: #a67c7c; font-size: 1.5rem; margin: 0 15px; transition: 0.3s; }
-        .socials a:hover { color: var(--deep-brown); }
+        /* PDF FRAME */
+        .pdf-frame { width: 100%; height: 500px; border: none; border-radius: 15px; background: white; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.75rem; color: #8d6e63; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
     <div class="bg-fixed"></div>
+    <div class="bg-overlay"></div>
 
     <nav>
         <ul class="nav-container">
-            <li><a href="#about" class="nav-link">Haqimda</a></li>
+            <li><a href="#about" class="nav-link">Biografiya</a></li>
             <li><a href="#articles" class="nav-link">Maqolalar</a></li>
             <li><a href="#ai" class="nav-link">AI Loyiha</a></li>
             <li><a href="#contact" class="nav-link">Aloqa</a></li>
@@ -99,25 +113,25 @@
     <header class="hero">
         <img src="https://i.pinimg.com/736x/0a/6d/4e/0a6d4e2878c7755b7f14b3f86e9e38f6.jpg" class="profile-img" alt="Gulhayo">
         <h1>Gulhayo Abdug'aniyeva</h1>
-        <p class="sub-title">AI RESEARCHER • DATA ENTHUSIAST</p>
+        <p class="sub-title">AI Researcher & Student</p>
     </header>
 
     <section id="about" class="section">
         <div class="glass-card">
-            <h2>Biografiya</h2>
-            <p style="color: #666; font-size: 1.05rem;">Qarshi Davlat Universiteti talabasi. Sun'iy intellekt va neyron tarmoqlar olamida o'z tadqiqotlarimni olib boraman.</p>
+            <h2>Haqimda</h2>
+            <p style="text-align: center;">Qarshi Davlat Universiteti talabasi. Sun'iy intellekt sohasidagi zamonaviy texnologiyalarni o'rganish va amaliyotga tatbiq etish mening asosiy maqsadim.</p>
         </div>
     </section>
 
     <section id="articles" class="section">
         <div class="glass-card">
             <h2>Ilmiy Maqolalar</h2>
-            <div style="margin-bottom: 40px;">
-                <p style="font-size: 0.9rem; color: #999; margin-bottom: 10px;">Big Data Tadbig'i</p>
+            <div style="margin-bottom: 30px;">
+                <p style="margin-bottom: 10px; font-weight: 600;">1. Big Data Tadbig'i</p>
                 <iframe class="pdf-frame" src="313-320.pdf"></iframe>
             </div>
             <div>
-                <p style="font-size: 0.9rem; color: #999; margin-bottom: 10px;">ResOAK-2025</p>
+                <p style="margin-bottom: 10px; font-weight: 600;">2. ResOAK-2025 Maqolasi</p>
                 <iframe class="pdf-frame" src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
             </div>
         </div>
@@ -126,28 +140,26 @@
     <section id="ai" class="section">
         <div class="glass-card">
             <h2>AI: Kabutarni Tanish</h2>
-            <button id="start-btn" class="btn" onclick="init()">MODELNI BOSHLASH</button>
-            <button id="stop-btn" class="btn" onclick="stopWebcam()" style="display:none; background: #fdf2f4;">TO'XTATISH</button>
+            <button id="start-btn" class="btn" onclick="init()">KAMERANI YOQISH</button>
+            <button id="stop-btn" class="btn btn-stop" onclick="stopWebcam()" style="display:none;">TO'XTATISH</button>
             
             <div id="webcam-container">
-                <i class="fas fa-camera" style="color: #ddd; font-size: 2.5rem;"></i>
+                <i class="fas fa-camera" style="color: #ccc; font-size: 3rem;"></i>
             </div>
             <div id="label-container"></div>
         </div>
     </section>
 
     <section id="contact" class="section">
-        <div class="glass-card">
-            <h2>Aloqa</h2>
-            <div class="socials">
-                <a href="https://t.me/G_Abduganiyeva"><i class="fab fa-telegram"></i></a>
-                <a href="mailto:gulhayoabduganiyeva36@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
+        <div class="glass-card" style="text-align: center;">
+            <h2>Bog'lanish</h2>
+            <a href="https://t.me/G_Abduganiyeva" style="color: var(--dark-brown); font-size: 2rem; margin: 0 15px;"><i class="fab fa-telegram"></i></a>
+            <a href="mailto:gulhayoabduganiyeva36@gmail.com" style="color: var(--dark-brown); font-size: 2rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 GULHAYO. Elegant AI Portfolio.</p>
+        <p>&copy; 2026 GULHAYO. Barcha huquqlar himoyalangan.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -163,13 +175,13 @@
             try {
                 model = await tmImage.load(URL + "model.json", URL + "metadata.json");
                 maxPredictions = model.getTotalClasses();
-
-                webcam = new tmImage.Webcam(240, 240, true); 
+                webcam = new tmImage.Webcam(260, 260, true); 
                 await webcam.setup(); 
                 await webcam.play();
                 
                 isRunning = true;
                 animationId = window.requestAnimationFrame(loop);
+
                 document.getElementById("start-btn").style.display = "none";
                 document.getElementById("stop-btn").style.display = "inline-block";
                 
@@ -181,7 +193,7 @@
                     labelContainer.appendChild(document.createElement("div"));
                 }
             } catch (e) {
-                alert("Model yuklanmadi. 'my_model' papkasini tekshiring.");
+                alert("Xatolik: Model fayllari 'my_model' papkasida ekanligini tekshiring.");
             }
         }
 
@@ -203,7 +215,7 @@
             isRunning = false;
             if (webcam) webcam.stop();
             if (animationId) window.cancelAnimationFrame(animationId);
-            document.getElementById("webcam-container").innerHTML = '<i class="fas fa-camera" style="color: #ddd; font-size: 2.5rem;"></i>';
+            document.getElementById("webcam-container").innerHTML = '<i class="fas fa-camera" style="color: #ccc; font-size: 3rem;"></i>';
             document.getElementById("label-container").innerHTML = "";
             document.getElementById("start-btn").style.display = "inline-block";
             document.getElementById("stop-btn").style.display = "none";
