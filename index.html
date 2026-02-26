@@ -3,115 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gulhayo Abdug'aniyeva | Portfolio</title>
+    <title>Mening Portfoliom</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        :root { --primary: #00d2ff; --glass: rgba(255, 255, 255, 0.1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        /* 1. UMUMIY STIL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
         body {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-attachment: fixed; color: white;
+            /* ORQA FON RASMI: Bu yerga xohlagan rasm havolasini qo'yishingiz mumkin */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
         }
 
-        /* NAVBAR */
+        /* 2. NAVBAR (MENYU) */
         .navbar {
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
-            padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000;
-            border-bottom: 1px solid var(--glass);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; list-style: none; }
-        .nav-item { position: relative; margin: 0 15px; }
-        .nav-link { text-decoration: none; color: white; font-weight: 500; padding: 10px; display: block; transition: 0.3s; }
-        .nav-link:hover { color: var(--primary); }
 
-        /* MEGA DROPDOWN */
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #00d2ff;
+        }
+
+        /* 3. MEGA DROPDOWN (MENYU ICHIDAGI MA'LUMOT) */
         .dropdown-content {
-            display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-            background: #000; width: 300px; padding: 20px; border-radius: 15px;
-            border: 1px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            width: 280px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #00d2ff;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .nav-item:hover .dropdown-content { display: block; animation: fadeInUp 0.3s ease; }
-        .dropdown-content img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
 
-        /* SECTIONS */
-        .section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; background: linear-gradient(to right, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-item:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
 
-        /* CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { background: var(--glass); border: 1px solid var(--glass); padding: 30px; border-radius: 20px; transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.15); border-color: var(--primary); }
-        .card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.3rem; }
-        .badge { background: var(--primary); color: #000; padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; position: absolute; top: 20px; right: 20px; }
+        .dropdown-content img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
 
-        .edu-box { border-left: 3px solid var(--primary); padding-left: 20px; }
+        .dropdown-content p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+        }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        /* 4. ASOSIY QISM (HERO SECTION) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #00d2ff;
+        }
+
+        /* ANIMATSIYA */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* MOBIL VERSIYA */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .nav-item { margin: 10px 0; }
+            .hero h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
-<body>
-
     <nav class="navbar">
         <ul class="nav-container">
             <li class="nav-item">
-                <a href="#home" class="nav-link">Asosiy</a>
-            </li>
-            <li class="nav-item">
-                <a href="#education" class="nav-link">Ta'lim</a>
+                <a href="#" class="nav-link">Men haqimda</a>
                 <div class="dropdown-content">
-                    <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?auto=format&fit=crop&w=400" alt="Edu">
-                    <p>Qarshi davlat universiteti talabasi. Ilmiy izlanishlar yo'nalishi.</p>
+                    <img src="https://via.placeholder.com/250x150" alt="Rasm">
+                    <p>Salom! Men dasturlashga va yangi texnologiyalarga qiziqaman. Bu mening shaxsiy sahifam.</p>
                 </div>
             </li>
+
             <li class="nav-item">
-                <a href="#articles" class="nav-link">Maqolalar</a>
+                <a href="#" class="nav-link">Maqolalar</a>
                 <div class="dropdown-content">
-                    <img src="https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?auto=format&fit=crop&w=400" alt="Art">
-                    <p>Big Data va Sun'iy intellekt bo'yicha chop etilgan ishlar.</p>
+                    <img src="https://via.placeholder.com/250x150/00d2ff/ffffff" alt="Maqola">
+                    <p>IT sohasidagi eng so'nggi yangiliklar va tajribalarim haqida yozgan maqolalarim.</p>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Loyihalarim</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150/333333/ffffff" alt="Loyiha">
+                    <p>GitHub'da yaratgan veb-saytlarim va ilovalarimni bu yerda ko'rishingiz mumkin.</p>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Qiziqishlarim</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150/ffcc00/000000" alt="Qiziqish">
+                    <p>Sport, kitob mutolaasi va sayohat qilishni yoqtiraman.</p>
                 </div>
             </li>
         </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>Gulhayo Abdug'aniyeva</h1>
-        <p style="font-size: 1.2rem; color: #ccc;">Sun'iy intellekt bo'yicha tadqiqotchi va dasturchi</p>
+    <section class="hero">
+        <h1>Assalomu Alaykum!</h1>
+        <p>Men [Sizning Ismingiz] - Dasturchi va Blogger</p>
     </section>
-
-    <section id="education" class="section">
-        <h2 style="font-size: 2rem; border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 30px;">Ta'lim</h2>
-        <div class="card edu-box">
-            <h3>Qarshi davlat universiteti</h3>
-            <p style="color: var(--primary); margin-bottom: 10px;">Talaba / Tadqiqotchi</p>
-            <p>Hozirgi kunda Big Data va SI sohasida ilmiy izlanishlar olib bormoqdaman. Ma'lumotlar bazasini optimallashtirish va ularni tahlil qilish asosiy yo'nalishim hisoblanadi.</p>
-        </div>
-    </section>
-
-    <section id="articles" class="section">
-        <h2 style="font-size: 2rem; border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 30px;">Ilmiy Maqolalar</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="badge">2025</span>
-                <h3>Zamonaviy usullarning Big Dataga tadbig'i</h3>
-                <p>Kuzgi yumshoq bug'doy navlari ma'lumotlarini intellektual tahlil qilish va optimal intervallarni aniqlash bo'yicha ilmiy ish.</p>
-                <p style="font-size: 0.8rem; margin-top: 15px; color: #aaa;">Respublika ilmiy-amaliy anjumani</p>
-            </div>
-            <div class="card">
-                <span class="badge">SI va Jamiyat</span>
-                <h3>Sun'iy intellekt va Ma'lumotlar bazasi</h3>
-                <p>SI simbiozining sog'liqni saqlash va davlat boshqaruvidagi o'rni. Jamiyat hayotidagi texnologik transformatsiyalar tahlili.</p>
-                <p style="font-size: 0.8rem; margin-top: 15px; color: #aaa;">Modern Education Journal</p>
-            </div>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 40px; color: #666; font-size: 0.8rem;">
-        &copy; 2024 Gulhayo Abdug'aniyeva. Barcha huquqlar himoyalangan.
-    </footer>
 
 </body>
 </html>
+<body>
