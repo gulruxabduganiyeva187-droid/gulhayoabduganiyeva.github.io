@@ -1,225 +1,272 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gulhayo | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { 
-            --dark-brown: #4e342e;
-            --soft-beige: #f5f5f5;
-            --glass-bg: rgba(255, 255, 255, 0.82);
-            --accent-color: #d7ccc8;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--dark-brown); 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulhayo | AI Portfolio</title>
 
-        /* FON RASMI VA YORQINLIKNI BOSHQARISH */
-        .bg-fixed {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* Siz yuborgan rasm uslubidagi Pinterest linki */
-            background-image: url('https://i.pinimg.com/originals/9e/12/32/9e1232807831d87135e6108168277271.jpg'); 
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://unpkg.com/scrollreveal"></script>
 
-        .bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* Bu qatlam yorqinlikni pasaytiradi va matnni o'qishni osonlashtiradi */
-            background: rgba(255, 250, 250, 0.6); 
-            backdrop-filter: blur(3px); /* Fonni biroz xiralashtirish */
-            z-index: -1;
-        }
+<style>
+:root{
+--bg1:#0f0c29;
+--bg2:#302b63;
+--bg3:#24243e;
+--pink:#ff4fd8;
+--blue:#6c63ff;
+--glass:rgba(255,255,255,0.08);
+}
 
-        /* NAVIGATSIYA */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 15px 0;
-        }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; list-style: none; gap: 30px; }
-        .nav-link { 
-            color: var(--dark-brown); text-decoration: none; font-size: 0.75rem; 
-            font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
-        }
-        .nav-link:hover { opacity: 0.6; }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 
-        /* HERO QISMI */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .profile-img {
-            width: 180px; height: 180px; border-radius: 50%;
-            object-fit: cover; border: 6px solid white; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 25px;
-        }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
-        .sub-title { letter-spacing: 6px; font-size: 0.8rem; color: #8d6e63; text-transform: uppercase; }
+body{
+font-family:'Montserrat',sans-serif;
+background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+color:white;
+overflow-x:hidden;
+}
 
-        /* KARTALAR */
-        .section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
-        .glass-card { 
-            background: var(--glass-bg); border-radius: 25px; padding: 40px; 
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-            margin-bottom: 40px;
-        }
-        h2 { font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 2rem; text-align: center; }
+/* Animated stars background */
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+animation:stars 90s linear infinite;
+opacity:0.07;
+z-index:-1;
+}
+@keyframes stars{
+from{transform:translateY(0);}
+to{transform:translateY(-1200px);}
+}
 
-        /* AI MODEL ELEMENTLARI */
-        #webcam-container { 
-            margin: 20px auto; border: 10px solid white; border-radius: 20px; 
-            overflow: hidden; width: 260px; height: 260px; 
-            background: #eee; display: flex; align-items: center; justify-content: center;
-        }
-        #label-container { margin-top: 15px; text-align: center; font-weight: 600; font-size: 1.1rem; color: #6d4c41; }
-        .btn { 
-            background: var(--dark-brown); color: white; border: none;
-            padding: 14px 35px; border-radius: 50px; cursor: pointer; transition: 0.4s;
-            font-size: 0.8rem; letter-spacing: 1px; font-weight: 600; display: block; margin: 10px auto;
-        }
-        .btn:hover { background: #6d4c41; transform: scale(1.02); }
-        .btn-stop { background: #a1887f; }
+/* Navbar */
+nav{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(20px);
+padding:15px 0;
+z-index:1000;
+}
+.nav-container{
+display:flex;
+justify-content:center;
+gap:30px;
+list-style:none;
+}
+.nav-link{
+color:white;
+text-decoration:none;
+font-size:0.8rem;
+letter-spacing:2px;
+text-transform:uppercase;
+transition:0.3s;
+}
+.nav-link:hover{color:var(--pink);}
 
-        /* PDF FRAME */
-        .pdf-frame { width: 100%; height: 500px; border: none; border-radius: 15px; background: white; }
+/* Hero */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
 
-        footer { text-align: center; padding: 40px; font-size: 0.75rem; color: #8d6e63; letter-spacing: 1px; }
-    </style>
+.profile-img{
+width:200px;
+height:200px;
+border-radius:50%;
+border:4px solid var(--pink);
+box-shadow:0 0 50px var(--pink);
+object-fit:cover;
+margin-bottom:25px;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0);}
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+background:linear-gradient(45deg,var(--pink),var(--blue));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.sub-title{
+letter-spacing:6px;
+opacity:0.8;
+}
+
+/* Sections */
+.section{
+padding:100px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+.glass-card{
+background:var(--glass);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 40px rgba(255,79,216,0.2);
+transition:0.5s;
+transform-style:preserve-3d;
+}
+
+.glass-card:hover{
+transform:rotateX(5deg) rotateY(5deg) scale(1.03);
+box-shadow:0 0 60px rgba(255,79,216,0.4);
+}
+
+h2{
+font-family:'Playfair Display',serif;
+margin-bottom:30px;
+text-align:center;
+color:var(--blue);
+}
+
+/* Buttons */
+.btn{
+background:linear-gradient(45deg,var(--pink),var(--blue));
+border:none;
+padding:14px 35px;
+border-radius:50px;
+cursor:pointer;
+color:white;
+font-weight:600;
+margin:10px auto;
+display:block;
+transition:0.4s;
+}
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px var(--pink);
+}
+.btn-stop{
+background:linear-gradient(45deg,#555,#888);
+}
+
+/* Webcam */
+#webcam-container{
+margin:20px auto;
+border:3px solid var(--blue);
+border-radius:20px;
+width:260px;
+height:260px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* Footer */
+footer{
+text-align:center;
+padding:40px;
+opacity:0.6;
+}
+
+/* Cursor glow */
+.cursor-glow{
+position:fixed;
+width:12px;
+height:12px;
+border-radius:50%;
+background:var(--pink);
+pointer-events:none;
+box-shadow:0 0 20px var(--pink);
+z-index:9999;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="bg-fixed"></div>
-    <div class="bg-overlay"></div>
+<nav>
+<ul class="nav-container">
+<li><a href="#about" class="nav-link">Biografiya</a></li>
+<li><a href="#articles" class="nav-link">Maqolalar</a></li>
+<li><a href="#ai" class="nav-link">AI</a></li>
+<li><a href="#contact" class="nav-link">Aloqa</a></li>
+</ul>
+</nav>
+<header class="hero">
+<img src="https://i.pinimg.com/736x/0a/6d/4e/0a6d4e2878c7755b7f14b3f86e9e38f6.jpg" class="profile-img">
+<h1>Gulhayo Abdug'aniyeva</h1>
+<p class="sub-title">AI Researcher & Creative Developer</p>
+</header>
 
-    <nav>
-        <ul class="nav-container">
-            <li><a href="#about" class="nav-link">Biografiya</a></li>
-            <li><a href="#articles" class="nav-link">Maqolalar</a></li>
-            <li><a href="#ai" class="nav-link">AI Loyiha</a></li>
-            <li><a href="#contact" class="nav-link">Aloqa</a></li>
-        </ul>
-    </nav>
+<section id="about" class="section">
+<div class="glass-card">
+<h2>Haqimda</h2>
+<p style="text-align:center;">
+Sun'iy intellekt va zamonaviy texnologiyalar ustida ishlovchi talabaman.
+Innovatsiya, kreativlik va kuchli dizayn – mening asosiy yo'nalishim.
+</p>
+</div>
+</section>
 
-    <header class="hero">
-        <img src="https://i.pinimg.com/736x/0a/6d/4e/0a6d4e2878c7755b7f14b3f86e9e38f6.jpg" class="profile-img" alt="Gulhayo">
-        <h1>Gulhayo Abdug'aniyeva</h1>
-        <p class="sub-title">AI Researcher & Student</p>
-    </header>
+<section id="articles" class="section">
+<div class="glass-card">
+<h2>Ilmiy Maqolalar</h2>
+<p><b>1. Big Data Tadbiqi</b></p>
+<iframe src="313-320.pdf" width="100%" height="400"></iframe>
+<br><br>
+<p><b>2. ResOAK-2025</b></p>
+<iframe src="MaqolaResOAK-2025ajratilgani.pdf" width="100%" height="400"></iframe>
+</div>
+</section>
 
-    <section id="about" class="section">
-        <div class="glass-card">
-            <h2>Haqimda</h2>
-            <p style="text-align: center;">Qarshi Davlat Universiteti talabasi. Sun'iy intellekt sohasidagi zamonaviy texnologiyalarni o'rganish va amaliyotga tatbiq etish mening asosiy maqsadim.</p>
-        </div>
-    </section>
+<section id="ai" class="section">
+<div class="glass-card">
+<h2>AI: Kabutarni Tanish</h2>
+<button id="start-btn" class="btn" onclick="init()">KAMERANI YOQISH</button>
+<button id="stop-btn" class="btn btn-stop" onclick="stopWebcam()" style="display:none;">TO'XTATISH</button>
+<div id="webcam-container"><i class="fas fa-camera"></i></div>
+<div id="label-container"></div>
+</div>
+</section>
 
-    <section id="articles" class="section">
-        <div class="glass-card">
-            <h2>Ilmiy Maqolalar</h2>
-            <div style="margin-bottom: 30px;">
-                <p style="margin-bottom: 10px; font-weight: 600;">1. Big Data Tadbig'i</p>
-                <iframe class="pdf-frame" src="313-320.pdf"></iframe>
-            </div>
-            <div>
-                <p style="margin-bottom: 10px; font-weight: 600;">2. ResOAK-2025 Maqolasi</p>
-                <iframe class="pdf-frame" src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
-            </div>
-        </div>
-    </section>
+<section id="contact" class="section">
+<div class="glass-card" style="text-align:center;">
+<h2>Bog'lanish</h2>
+<a href="https://t.me/G_Abduganiyeva" style="color:white;font-size:2rem;margin:0 15px;"><i class="fab fa-telegram"></i></a>
+<a href="mailto:gulhayoabduganiyeva36@gmail.com" style="color:white;font-size:2rem;margin:0 15px;"><i class="fas fa-envelope"></i></a>
+</div>
+</section>
 
-    <section id="ai" class="section">
-        <div class="glass-card">
-            <h2>AI: Kabutarni Tanish</h2>
-            <button id="start-btn" class="btn" onclick="init()">KAMERANI YOQISH</button>
-            <button id="stop-btn" class="btn btn-stop" onclick="stopWebcam()" style="display:none;">TO'XTATISH</button>
-            
-            <div id="webcam-container">
-                <i class="fas fa-camera" style="color: #ccc; font-size: 3rem;"></i>
-            </div>
-            <div id="label-container"></div>
-        </div>
-    </section>
+<footer>
+<p>© 2026 GULHAYO</p>
+</footer>
 
-    <section id="contact" class="section">
-        <div class="glass-card" style="text-align: center;">
-            <h2>Bog'lanish</h2>
-            <a href="https://t.me/G_Abduganiyeva" style="color: var(--dark-brown); font-size: 2rem; margin: 0 15px;"><i class="fab fa-telegram"></i></a>
-            <a href="mailto:gulhayoabduganiyeva36@gmail.com" style="color: var(--dark-brown); font-size: 2rem; margin: 0 15px;"><i class="fas fa-envelope"></i></a>
-        </div>
-    </section>
+<script>
+ScrollReveal().reveal('.glass-card',{distance:'80px',duration:1500,origin:'bottom',interval:200});
 
-    <footer>
-        <p>&copy; 2026 GULHAYO. Barcha huquqlar himoyalangan.</p>
-    </footer>
+document.addEventListener("mousemove",function(e){
+const glow=document.createElement("div");
+glow.className="cursor-glow";
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+document.body.appendChild(glow);
+setTimeout(()=>glow.remove(),300);
+});
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    
-    <script>
-        const URL = "./my_model/";
-        let model, webcam, labelContainer, maxPredictions, animationId;
-        let isRunning = false;
-
-        async function init() {
-            if(isRunning) return;
-            try {
-                model = await tmImage.load(URL + "model.json", URL + "metadata.json");
-                maxPredictions = model.getTotalClasses();
-                webcam = new tmImage.Webcam(260, 260, true); 
-                await webcam.setup(); 
-                await webcam.play();
-                
-                isRunning = true;
-                animationId = window.requestAnimationFrame(loop);
-
-                document.getElementById("start-btn").style.display = "none";
-                document.getElementById("stop-btn").style.display = "inline-block";
-                
-                document.getElementById("webcam-container").innerHTML = "";
-                document.getElementById("webcam-container").appendChild(webcam.canvas);
-                labelContainer = document.getElementById("label-container");
-                labelContainer.innerHTML = "";
-                for (let i = 0; i < maxPredictions; i++) {
-                    labelContainer.appendChild(document.createElement("div"));
-                }
-            } catch (e) {
-                alert("Xatolik: Model fayllari 'my_model' papkasida ekanligini tekshiring.");
-            }
-        }
-
-        async function loop() {
-            if(!isRunning) return;
-            webcam.update();
-            await predict();
-            animationId = window.requestAnimationFrame(loop);
-        }
-
-        async function predict() {
-            const prediction = await model.predict(webcam.canvas);
-            for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.childNodes[i].innerHTML = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
-            }
-        }
-
-        function stopWebcam() {
-            isRunning = false;
-            if (webcam) webcam.stop();
-            if (animationId) window.cancelAnimationFrame(animationId);
-            document.getElementById("webcam-container").innerHTML = '<i class="fas fa-camera" style="color: #ccc; font-size: 3rem;"></i>';
-            document.getElementById("label-container").innerHTML = "";
-            document.getElementById("start-btn").style.display = "inline-block";
-            document.getElementById("stop-btn").style.display = "none";
-        }
-    </script>
 </body>
 </html>
