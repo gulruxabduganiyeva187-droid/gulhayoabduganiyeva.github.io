@@ -17,21 +17,19 @@
 --pink:#ff4fd8; --blue:#6c63ff; --glass:rgba(255,255,255,0.08); --white:#fff;
 }
 
-/* Basic reset */
+/* Reset */
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:white;overflow-x:hidden;}
 
-/* Stars background */
+/* Stars background persistent */
 body::before{
 content:"";
 position:fixed;width:200%;height:200%;
 background:radial-gradient(white 1px,transparent 1px);
 background-size:40px 40px;
-animation:stars 90s linear infinite;
 opacity:0.07;
 z-index:-1;
 }
-@keyframes stars{from{transform:translateY(0);}to{transform:translateY(-1200px);}}
 
 /* Navbar & Hamburger */
 nav{
@@ -77,23 +75,23 @@ h2{font-family:'Playfair Display',serif;margin-bottom:30px;text-align:center;col
 
 /* Footer */
 footer{text-align:center;padding:40px;opacity:0.6;}
-  /* Cursor glow */
+
+/* Cursor glow persistent */
 .cursor-glow{position:fixed;width:12px;height:12px;border-radius:50%;background:yellow;pointer-events:none;box-shadow:0 0 20px yellow;z-index:9999;}
 </style>
 </head>
 
 <body>
-
-<nav>
+  <nav>
 <div class="navbar">
 <h1>Gulhayo</h1>
 <i class="fas fa-bars menu-icon" id="hamburger"></i>
 </div>
 <div class="nav-links" id="navLinks">
-<a href="#about" target="_blank">Biografiya</a>
-<a href="#articles" target="_blank">Maqolalar</a>
-<a href="#ai" target="_blank">AI</a>
-<a href="#contact" target="_blank">Aloqa</a>
+<a href="#about">Biografiya</a>
+<a href="#articles">Maqolalar</a>
+<a href="#ai">AI</a>
+<a href="#contact">Aloqa</a>
 </div>
 </nav>
 
@@ -134,8 +132,8 @@ footer{text-align:center;padding:40px;opacity:0.6;}
 <section id="contact" class="section">
 <div class="glass-card" style="text-align:center;">
 <h2>Bog'lanish</h2>
-<a href="https://t.me/G_Abduganiyeva" style="color:white;font-size:2rem;margin:0 15px;" target="_blank"><i class="fab fa-telegram"></i></a>
-<a href="mailto:gulhayoabduganiyeva36@gmail.com" style="color:white;font-size:2rem;margin:0 15px;" target="_blank"><i class="fas fa-envelope"></i></a>
+<a href="https://t.me/G_Abduganiyeva" style="color:white;font-size:2rem;margin:0 15px;"><i class="fab fa-telegram"></i></a>
+<a href="mailto:gulhayoabduganiyeva36@gmail.com" style="color:white;font-size:2rem;margin:0 15px;"><i class="fas fa-envelope"></i></a>
 </div>
 </section>
 
@@ -147,21 +145,30 @@ const hamburger=document.getElementById('hamburger');
 const navLinks=document.getElementById('navLinks');
 hamburger.addEventListener('click',()=>{navLinks.style.right=navLinks.style.right==='0px'?'-100%':'0px';});
 
-// Cursor glow
+// Smooth scroll
+document.querySelectorAll('.nav-links a').forEach(link=>{
+link.addEventListener('click',e=>{
+e.preventDefault();
+const target=document.querySelector(link.getAttribute('href'));
+target.scrollIntoView({behavior:'smooth'});
+navLinks.style.right='-100%';
+});
+});
+
+// Cursor glow persistent
 document.addEventListener("mousemove",function(e){
 const glow=document.createElement("div");
 glow.className="cursor-glow";
 glow.style.left=e.clientX+"px";
 glow.style.top=e.clientY+"px";
 document.body.appendChild(glow);
-setTimeout(()=>glow.remove(),300);
 });
 
 // Scroll reveal
 ScrollReveal().reveal('.glass-card',{distance:'80px',duration:1500,origin:'bottom',interval:200});
 
 // AI model
-const URL="my_model/"; // Lokalda ishlasa
+const URL="my_model/";
 let model,webcam,labelContainer,maxPredictions,animationId,isRunning=false;
 async function init(){
 if(isRunning)return;
@@ -185,9 +192,9 @@ if(!isRunning)return;
 webcam.update();
 await predict();
 animationId=requestAnimationFrame(loop);
-  }
+}
 async function predict(){
-const prediction=await model.predict(webcam.canvas);
+  const prediction=await model.predict(webcam.canvas);
 for(let i=0;i<maxPredictions;i++){
 labelContainer.childNodes[i].innerHTML=prediction[i].className+": "+(prediction[i].probability*100).toFixed(0)+"%";
 }
@@ -202,5 +209,6 @@ document.getElementById("start-btn").style.display="inline-block";
 document.getElementById("stop-btn").style.display="none";
 }
 </script>
+
 </body>
 </html>
