@@ -3,135 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdug'aniyeva Gulhayo | Portfolio</title>
+    <title>Mening Portfoliom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* Umumiy ko'rinish */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+        /* 1. UMUMIY STIL */
+        * {
             margin: 0;
-            padding: 20px;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        body {
+            /* ORQA FON RASMI: Bu yerga xohlagan rasm havolasini qo'yishingiz mumkin */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
         }
-        img.profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #3498db;
+
+        /* 2. NAVBAR (MENYU) */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        h1 { color: #2c3e50; }
-        
-        /* Menyu tugmachalari */
-        .menu {
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin: 25px 0;
+            list-style: none;
         }
-        .menu button {
-            background-color: #3498db;
+
+        .nav-item {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: 0.3s;
-            font-size: 14px;
-        }
-        .menu button:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
         }
 
-        /* Bo'limlar */
-        .content-section {
-            display: none; /* Dastlab hammasi yashirin */
+        .nav-link:hover {
+            color: #00d2ff;
+        }
+
+        /* 3. MEGA DROPDOWN (MENYU ICHIDAGI MA'LUMOT) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            width: 280px;
             padding: 20px;
-            border-top: 1px solid #eee;
-            animation: fadeIn 0.5s;
-            text-align: left;
+            border-radius: 15px;
+            border: 1px solid #00d2ff;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .active { display: block; }
 
-        .skill-bar {
-            background: #eee;
-            border-radius: 10px;
-            margin: 10px 0;
+        .nav-item:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.4s ease;
         }
-        .skill-fill {
-            background: #3498db;
-            color: white;
-            padding: 5px;
+
+        .dropdown-content img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
-            text-align: right;
-            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .dropdown-content p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+        }
+
+        /* 4. ASOSIY QISM (HERO SECTION) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #00d2ff;
+        }
+
+        /* ANIMATSIYA */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* MOBIL VERSIYA */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .nav-item { margin: 10px 0; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
+    <nav class="navbar">
+        <ul class="nav-container">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Men haqimda</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150" alt="Rasm">
+                    <p>Salom! Men dasturlashga va yangi texnologiyalarga qiziqaman. Bu mening shaxsiy sahifam.</p>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Maqolalar</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150/00d2ff/ffffff" alt="Maqola">
+                    <p>IT sohasidagi eng so'nggi yangiliklar va tajribalarim haqida yozgan maqolalarim.</p>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Loyihalarim</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150/333333/ffffff" alt="Loyiha">
+                    <p>GitHub'da yaratgan veb-saytlarim va ilovalarimni bu yerda ko'rishingiz mumkin.</p>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Qiziqishlarim</a>
+                <div class="dropdown-content">
+                    <img src="https://via.placeholder.com/250x150/ffcc00/000000" alt="Qiziqish">
+                    <p>Sport, kitob mutolaasi va sayohat qilishni yoqtiraman.</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Assalomu Alaykum!</h1>
+        <p>Men [Sizning Ismingiz] - Dasturchi va Blogger</p>
+    </section>
+
+</body>
+</html>
 <body>
-
-<div class="container">
-    <img src="1000048187.heic" alt="Gulhayo" class="profile-pic" onerror="this.src='https://via.placeholder.com/150'">
-    
-    <h1>ABDUG'ANIYEVA GULHAYO</h1>
-    <p>Data-muhandis | AI Tadqiqotchi</p>
-
-    <div class="menu">
-        <button onclick="openSection('about')">Men haqimda</button>
-        <button onclick="openSection('edu')">O'qish joyim</button>
-        <button onclick="openSection('projects')">Loyihalarim</button>
-        <button onclick="openSection('articles')">Maqolalarim</button>
-        <button onclick="openSection('address')">Manzil & Aloqa</button>
-    </div>
-
-    <div id="about" class="content-section active">
-        <h3>Men haqimda</h3>
-        <p>Qarshi davlat universiteti Matematika va kompyuter ilmlari fakulteti talabasiman. Asosiy qiziqishlarim Sun'iy intellekt tizimlarini yaratish va ma'lumotlarni tahlil qilishga qaratilgan.</p>
-        <div class="skill-bar"><div class="skill-fill" style="width: 80%;">Python & ML 80%</div></div>
-        <div class="skill-bar"><div class="skill-fill" style="width: 75%;">Data Analysis 75%</div></div>
-    </div>
-
-    <div id="edu" class="content-section">
-        <h3>O'qish joyim</h3>
-        <p><strong>Universitet:</strong> Qarshi davlat universiteti</p>
-        <p><strong>Fakultet:</strong> Matematika va kompyuter ilmlari</p>
-        <p><strong>Yo'nalish:</strong> Sun'iy intellekt va ma'lumotlar muhandisligi</p>
-    </div>
-
-    <div id="projects" class="content-section">
-        <h3>Loyihalarim</h3>
-        <ul>
-            <li><strong>AI Vision:</strong> Kabutarlarni aniqlash tizimi.</li>
-            <li><strong>Computer Vision:</strong> Tasvirlarga ishlov berish algoritmlari.</li>
-        </ul>
-        <div id="articles" class="content-section">
-        <h3>Maqolalarim</h3>
-        <ul>
-            <li>"Sun'iy intellektning zamonaviy jamiyatdagi o'rni" - 2024</li>
-            <li>"Data Science asoslari: Python tili misolida" - 2025</li>
-        </ul>
-    </div>
-
-    <div id="address" class="content-section">
-        <h3>Manzil va Aloqa</h3>
-        <p>📍 <strong>Yashash manzilim:</strong> O'zbekiston, Qashqadaryo viloyati, Qarshi shahri.</p>
-        <p>📧 <strong>Email:</strong> gulhayoabduganiyeva36@gmail.com</p>
-        <p>✈️ <strong>Telegram:</strong> <a href="https://t.me/Ruzmatuvna_G">@Ruzmatuvna_G</a></p>
-    </div>
-
-</div>
-    </div>
