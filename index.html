@@ -11,168 +11,125 @@
     
     <style>
         body {
-            background: #050112; /* Kosmik qora fon */
+            background: #050112;
             color: white;
             font-family: 'Poppins', sans-serif;
             background-image: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #050112 100%);
-            overflow-x: hidden;
+            min-height: 100vh;
         }
-
-        /* Neon Effektlari */
         .neon-text {
             color: #fff;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
             font-family: 'Orbitron', sans-serif;
         }
-
         .profile-ring {
-            width: 180px; height: 180px;
-            margin: 0 auto;
-            border-radius: 50%;
-            padding: 5px;
+            width: 150px; height: 150px; margin: 0 auto;
+            border-radius: 50%; padding: 5px;
             background: linear-gradient(45deg, #ff00ff, #00ffff);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
-            position: relative;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
         }
-
         .profile-ring img {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #050112;
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
         }
-
-        /* Menyu tugmalari (Karta ko'rinishida) */
         .nav-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.4s;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            height: 100%;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            border-radius: 20px; padding: 20px;
+            transition: 0.3s; backdrop-filter: blur(10px);
         }
-
-        .nav-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 0, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-            border-color: #ff00ff;
-        }
-
-        .nav-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .btn-ai {
             background: linear-gradient(45deg, #ff00ff, #7c3aed);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            padding: 12px 30px;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+            border: none; border-radius: 50px; color: white;
+            padding: 10px 25px; font-weight: bold;
         }
-
-        /* Yulduzli osmon effekti */
-        .stars {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
+        #webcam-container canvas {
+            border-radius: 15px;
+            border: 2px solid #ff00ff;
         }
     </style>
 </head>
 <body>
 
-    <div class="stars"></div>
-
     <div class="container text-center py-5">
-        <div class="profile-ring mb-4">
+        <div class="profile-ring mb-3">
             <img src="1000048188.jpg" alt="Gulhayo">
         </div>
-        
-        <h1 class="neon-text mb-2">Gulhayo</h1>
-        <p class="text-info fw-bold">AI Researcher & Creative Developer</p>
-        
-        <hr class="my-5 border-secondary opacity-25">
+        <h2 class="neon-text">Gulhayo</h2>
+        <p class="text-info small">AI Researcher & Developer</p>
 
-        <h5 class="mb-4" style="letter-spacing: 2px;">MENING YO'NALISHLARIM</h5>
-        <div class="row g-4">
-            <div class="col-6 col-md-3">
-                <div class="nav-card">
-                    <i class="fas fa-book-open"></i>
-                    <h6>Biografiya</h6>
-                    <p class="small text-muted">Men haqimda</p>
-                </div>
-                </div>
-            <div class="col-6 col-md-3">
-                <div class="nav-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h6>Maqolalar</h6>
-                    <p class="small text-muted">Ilmiy ishlar</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="nav-card">
-                    <i class="fas fa-brain"></i>
-                    <h6>AI Kamera</h6>
-                    <p class="small text-muted">Kabutar tanish</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="nav-card">
-                    <i class="fas fa-paper-plane"></i>
-                    <h6>Aloqa</h6>
-                    <p class="small text-muted">Bog'lanish</p>
-                </div>
-            </div>
+        <div class="row g-3 mt-4">
+            <div class="col-6 col-md-3"><div class="nav-card"><i class="fas fa-book-open mb-2"></i><br>Bio</div></div>
+            <div class="col-6 col-md-3"><div class="nav-card"><i class="fas fa-file-alt mb-2"></i><br>Maqolalar</div></div>
+            <div class="col-6 col-md-3"><div class="nav-card"><i class="fas fa-brain mb-2"></i><br>AI Kamera</div></div>
+            <div class="col-6 col-md-3"><div class="nav-card"><i class="fas fa-paper-plane mb-2"></i><br>Aloqa</div></div>
         </div>
 
         <div class="mt-5 p-4 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,255,0.1);">
             <h4 class="neon-text mb-4">AI Vision Tizimi</h4>
-            <div id="webcam-container" class="mb-3"></div>
-            <div id="label-container" class="mb-3"></div>
-            <button class="btn btn-ai" onclick="init()">
-                <i class="fas fa-rocket me-2"></i> Tizimni ishga tushirish
-            </button>
+            
+            <div id="webcam-container" class="mb-3 d-flex justify-content-center">
+                <div id="placeholder-bg" style="width: 200px; height: 200px; background: rgba(0,0,0,0.5); border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ff00ff;">
+                    <i class="fas fa-video-slash fa-2x text-muted"></i>
+                </div>
+            </div>
+
+            <div id="label-container" class="mb-4 fw-bold" style="color: #00ffff; font-family: 'Orbitron', sans-serif;"></div>
+
+            <div class="d-flex justify-content-center gap-3">
+                <button id="start-btn" class="btn btn-ai" onclick="init()">
+                    <i class="fas fa-play me-2"></i> Ishga tushirish
+                </button>
+                <button id="stop-btn" class="btn btn-outline-danger rounded-pill px-4" onclick="stopWebcam()" style="display: none;">
+                    <i class="fas fa-stop me-2"></i> To'xtatish
+                </button>
+            </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <script>
+
+    <script type="text/javascript">
         const URL = "https://teachablemachine.withgoogle.com/models/aCwgeVOmQ/";
         let model, webcam, labelContainer, maxPredictions;
+        let isRunning = false;
 
         async function init() {
-            const modelURL = URL + "model.json";
-            const metadataURL = URL + "metadata.json";
-            model = await tmImage.load(modelURL, metadataURL);
+            if (isRunning) return;
+            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
             maxPredictions = model.getTotalClasses();
-            webcam = new tmImage.Webcam(300, 300, true);
-            await webcam.setup();
+            webcam = new tmImage.Webcam(200, 200, true); 
+            await webcam.setup(); 
             await webcam.play();
+            isRunning = true;
             window.requestAnimationFrame(loop);
+            document.getElementById("placeholder-bg").style.display = "none";
+            document.getElementById("webcam-container").innerHTML = "";
             document.getElementById("webcam-container").appendChild(webcam.canvas);
             labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) {
-                labelContainer.appendChild(document.createElement("div"));
-            }
+            labelContainer.innerHTML = "";
+            for (let i = 0; i < maxPredictions; i++) { labelContainer.appendChild(document.createElement("div")); }
+            document.getElementById("start-btn").style.display = "none";
+            document.getElementById("stop-btn").style.display = "inline-block";
         }
-        async function loop() { webcam.update(); await predict(); window.requestAnimationFrame(loop); }
+
+        async function loop() { if (!isRunning) return; webcam.update(); await predict(); window.requestAnimationFrame(loop); }
+
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
-                labelContainer.childNodes[i].innerHTML = <span class="badge bg-dark border border-info m-1">${classPrediction}</span>;
+                labelContainer.childNodes[i].innerHTML = <div class="badge border border-info m-1 p-2">${classPrediction}</div>;
+            }
+        }
+
+        function stopWebcam() {
+            if (webcam) {
+                webcam.stop();
+                isRunning = false;
+                document.getElementById("webcam-container").innerHTML = '<div id="placeholder-bg" style="width: 200px; height: 200px; background: rgba(0,0,0,0.5); border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ff00ff;"><i class="fas fa-video-slash fa-2x text-muted"></i></div>';
+                labelContainer.innerHTML = "Tizim to'xtatildi";
+                document.getElementById("start-btn").style.display = "inline-block";
+                document.getElementById("stop-btn").style.display = "none";
             }
         }
     </script>
