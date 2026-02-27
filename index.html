@@ -3,287 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gulhayo | Space AI Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
+<title>Gulhayo | Portfolio</title>
 
 <style>
+/* Umumiy */
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Montserrat',sans-serif;
-background:#000814;
-color:white;
-overflow-x:hidden;
-}
+body{font-family:'Montserrat',sans-serif;overflow-x:hidden;color:#fff;background:#0a0a2a;cursor:none;}
 
-/* ===== STARFIELD CANVAS ===== */
-#starfield{
+/* Kosmik yulduzlar fon */
+#starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;}
+
+/* Gulli fon */
+.flowers{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-3;
+top:0; left:0;
+width:100%; height:100%;
+background-image:url("images/flower.png");
+background-repeat:repeat;
+background-size:150px;
+opacity:0.1;
+z-index:-2;
 }
 
-/* ===== NAVBAR ===== */
-nav{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 25px;
-z-index:1000;
+/* Navbar */
+.navbar{
+display:flex; justify-content:space-between; align-items:center;
+padding:15px 50px;
+background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
+position:sticky; top:0; z-index:1000; border-radius:0 0 30px 30px;
 }
-
-.logo{
-font-family:'Orbitron',sans-serif;
-font-size:20px;
-color:#00f7ff;
-}
-
-.menu-icon{
-font-size:24px;
-cursor:pointer;
-}
-
+.logo{font-size:22px; font-weight:bold; color:#ff66b2;}
+.menu-icon{font-size:24px; cursor:pointer;}
 .nav-links{
-position:fixed;
-right:-100%;
-top:0;
-height:100%;
-width:250px;
-background:#001d3d;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding-top:100px;
-gap:30px;
-transition:0.5s;
+position:fixed; right:-100%; top:0; height:100%; width:250px;
+background:rgba(255,255,255,0.05); display:flex; flex-direction:column; gap:30px;
+padding-top:100px; transition:0.5s;
 }
+.nav-links li a{color:#fff;text-decoration:none;font-size:18px; transition:0.3s;}
+.nav-links li a:hover{color:#ff66b2;}
 
-.nav-links a{
-color:white;
-text-decoration:none;
-font-size:18px;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:#00f7ff;
-}
-
-/* ===== HERO ===== */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-family:'Orbitron',sans-serif;
-font-size:3rem;
-background:linear-gradient(90deg,#00f7ff,#ff00f7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.glow-earth{
-width:250px;
-height:250px;
+/* HERO */
+.hero{text-align:center;padding:100px 20px;}
+.profile-wrapper{position:relative; display:inline-block;}
+.profile-img{width:180px; height:180px; border-radius:50%; object-fit:cover; border:5px solid rgba(255,255,255,0.3);}
+.glow-circle{
+position:absolute; top:-20px; left:-20px; width:220px; height:220px;
 border-radius:50%;
-background:radial-gradient(circle at 30% 30%, #00f7ff, #001d3d);
-box-shadow:0 0 80px #00f7ff;
-margin:30px 0;
-animation:spin 15s linear infinite;
+box-shadow:0 0 50px #ff66b2; animation:glowAnim 2s infinite alternate;
 }
+@keyframes glowAnim{from{box-shadow:0 0 30px #ff66b2;} to{box-shadow:0 0 70px #ff99cc;}}
 
-@keyframes spin{
-from{transform:rotate(0deg)}
-to{transform:rotate(360deg)}
-}
+.hero h1{margin-top:20px; font-size:3rem; color:#ff4da6;}
+.hero p{font-size:18px; color:#ff80bf;}
 
-/* ===== SECTION ===== */
-.section{
-padding:100px 20px;
-max-width:900px;
-margin:auto;
-}
+/* CARD */
+.section{padding:80px 20px; max-width:900px; margin:auto;}
+.card{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);padding:25px;border-radius:20px;margin-bottom:30px;transition:0.3s;}
+.card:hover{transform:translateY(-5px);box-shadow:0 0 30px #ff66b2;}
+h2{margin-bottom:20px;color:#ff66b2;}
+iframe{width:100%; height:400px; border:none; border-radius:10px;}
 
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 30px rgba(0,247,255,0.3);
-margin-bottom:40px;
-transition:0.4s;
-}
+/* Footer */
+footer{text-align:center;padding:25px;opacity:0.6;}
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 60px rgba(0,247,255,0.6);
-}
-
-h2{
-font-family:'Orbitron';
-margin-bottom:20px;
-color:#00f7ff;
-}
-
-/* ===== BUTTON ===== */
-button{
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#00f7ff,#ff00f7);
-color:white;
-cursor:pointer;
-margin-top:15px;
-}
-
-/* ===== WEBCAM ===== */
-#webcam-container{
-margin-top:20px;
-}
-
-/* ===== PDF ===== */
-iframe{
-width:100%;
-height:400px;
-border:none;
-border-radius:10px;
-margin-top:15px;
-}
-
-footer{
-text-align:center;
-padding:30px;
-opacity:0.6;
+/* Cursor */
+.cursor{
+position:fixed;
+width:20px;
+height:20px;
+border-radius:50%;
+pointer-events:none;
+z-index:9999;
+mix-blend-mode: difference;
+background:#ffcc00;
+transition: transform 0.1s;
 }
 </style>
-</head>
+
 <body>
 
+<!-- Kosmik yulduzlar fon -->
 <canvas id="starfield"></canvas>
 
-<nav>
-<div class="logo">Gulhayo</div>
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<!-- Gulli fon -->
+<div class="flowers"></div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Tepadagi shisha menyu -->
+<nav class="navbar">
+    <div class="logo">🌸 Gulhayo</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about" onclick="toggleMenu()">Bosh sahifa</a></li>
+        <li><a href="#articles" onclick="toggleMenu()">Men haqimda</a></li>
+        <li><a href="#ai" onclick="toggleMenu()">AI Loyiha</a></li>
+        <li><a href="#contact" onclick="toggleMenu()">Bog'lanish</a></li>
+    </ul>
 </nav>
 
-<div class="nav-links" id="navLinks">
-<a href="#about" onclick="toggleMenu()">Biografiya</a>
-<a href="#articles" onclick="toggleMenu()">Maqolalar</a>
-<a href="#ai" onclick="toggleMenu()">AI</a>
-<a href="#contact" onclick="toggleMenu()">Aloqa</a>
-</div>
-
+<!-- HERO -->
 <section class="hero">
-<h1>Gulhayo Abdug'aniyeva</h1>
-<div class="glow-earth"></div>
-<p>AI Researcher & Creative Developer</p>
+    <div class="profile-wrapper">
+        <img src="images/profile.jpg" alt="Gulhayo" class="profile-img">
+        <div class="glow-circle"></div>
+    </div>
+    <h1>Gulhayo Abdug'aniyeva</h1>
+    <p>AI Researcher & Creative Developer</p>
 </section>
 
+<!-- HAQIMDA -->
 <section id="about" class="section">
-<div class="card">
-<h2>Haqimda</h2>
-<p>Sun'iy intellekt va zamonaviy texnologiyalar ustida ishlovchi talabaman.</p>
-</div>
+    <div class="card">
+        <h2>Haqimda</h2>
+        <p>Sun'iy intellekt va zamonaviy texnologiyalar ustida ishlovchi talabaman.</p>
+    </div>
 </section>
 
+<!-- MAQOLALAR -->
 <section id="articles" class="section">
-<div class="card">
-<h2>1-Maqola</h2>
-<iframe src="313-320.pdf"></iframe>
-</div>
+    <div class="card">
+        <h2>1-Maqola</h2>
+        <iframe src="313-320.pdf"></iframe>
+    </div>
 
-<div class="card">
-<h2>2-Maqola</h2>
-<iframe src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
-</div>
+    <div class="card">
+        <h2>2-Maqola</h2>
+        <iframe src="MaqolaResOAK-2025ajratilgani.pdf"></iframe>
+    </div>
 </section>
-
+<!-- AI Kamera -->
 <section id="ai" class="section">
-<div class="card">
-<h2>AI Kamera</h2>
-<button onclick="init()">Kamerani yoqish</button>
-<div id="webcam-container"></div>
-<div id="label-container"></div>
-</div>
+    <div class="card">
+        <h2>AI Kamera</h2>
+        <button onclick="init()">Kamerani yoqish</button>
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+    </div>
 </section>
+
+<!-- Bog'lanish -->
 <section id="contact" class="section">
-<div class="card">
-<h2>Aloqa</h2>
-<p>Email: gulhayoabduganiyeva36@gmail.com</p>
-</div>
+    <div class="card">
+        <h2>Aloqa</h2>
+        <p>Email: gulhayoabduganiyeva36@gmail.com</p>
+    </div>
 </section>
 
 <footer>
 © 2026 Gulhayo
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
 <script>
-/* MENU */
+// Hamburger menyu
 function toggleMenu(){
-const nav = document.getElementById("navLinks");
-nav.style.right = nav.style.right === "0px" ? "-100%" : "0px";
+  const nav = document.getElementById("navLinks");
+  nav.style.right = nav.style.right === "0px" ? "-100%" : "0px";
 }
 
-/* STARFIELD */
+// STARFIELD
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 let stars=[];
 for(let i=0;i<200;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*1.5,
-d:Math.random()*0.5
-});
+    stars.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*1.5, d:Math.random()*0.5});
 }
-
 function draw(){
-ctx.fillStyle="#000814";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-});
+    ctx.fillStyle="#0a0a2a";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    stars.forEach(s=>{
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fill();
+    });
 }
-
 function update(){
-stars.forEach(s=>{
-s.y+=s.d;
-if(s.y>canvas.height)s.y=0;
-});
+    stars.forEach(s=>{
+        s.y+=s.d;
+        if(s.y>canvas.height) s.y=0;
+    });
 }
-
-function animate(){
-draw();
-update();
-requestAnimationFrame(animate);
-}
+function animate(){draw();update();requestAnimationFrame(animate);}
 animate();
 
-/* AI */
+// AI Kamera
 const URL="my_model/";
 let model,webcam,labelContainer,maxPredictions;
-
 async function init(){
 model=await tmImage.load(URL+"model.json",URL+"metadata.json");
 maxPredictions=model.getTotalClasses();
@@ -293,24 +204,40 @@ await webcam.play();
 window.requestAnimationFrame(loop);
 document.getElementById("webcam-container").appendChild(webcam.canvas);
 labelContainer=document.getElementById("label-container");
-for(let i=0;i<maxPredictions;i++)
-labelContainer.appendChild(document.createElement("div"));
+for(let i=0;i<maxPredictions;i++) labelContainer.appendChild(document.createElement("div"));
 }
-
 async function loop(){
 webcam.update();
 await predict();
 window.requestAnimationFrame(loop);
 }
-
 async function predict(){
 const prediction=await model.predict(webcam.canvas);
-for(let i=0;i<maxPredictions;i++){
-labelContainer.childNodes[i].innerHTML=
-prediction[i].className+": "+
-(prediction[i].probability*100).toFixed(2)+"%";
+for(let i=0;i<maxPredictions;i++)
+labelContainer.childNodes[i].innerHTML=prediction[i].className+": "+(prediction[i].probability*100).toFixed(2)+"%";
 }
-}
+
+// Cursor animatsiyasi (kichik gullar)
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e=>{
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+
+    const flower = document.createElement('div');
+    flower.style.position='fixed';
+    flower.style.left=e.clientX-8+'px';
+    flower.style.top=e.clientY-8+'px';
+    flower.style.width='16px';
+    flower.style.height='16px';
+    flower.style.background='url(images/flower.png)';
+    flower.style.backgroundSize='cover';
+    flower.style.pointerEvents='none';
+    flower.style.zIndex='9999';
+    flower.style.opacity='0.8';
+    flower.style.transition='all 0.8s ease-out';
+    document.body.appendChild(flower);
+    setTimeout(()=>flower.remove(),800);
+});
 </script>
 
 </body>
